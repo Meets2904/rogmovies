@@ -55,7 +55,7 @@ const TopRatedTvSlider = (props: PropType) => {
                                 <div className='upcoming-movie-poster'><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></div>
                                 <h6>{movie?.name}</h6>
                                 <div className='upcoming-movie-date'>
-                                    <p>{movie?.first_air_date}</p>
+                                    <p>{movie?.first_air_date || "NA"}</p>
                                     <div className='upcoming-movie-vote'><Star size={18} fill='orange' color='orange' /><span>{(movie?.vote_average).toFixed(2)}</span></div>
                                 </div>
                             </div>
