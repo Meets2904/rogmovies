@@ -1,0 +1,70 @@
+@import '../colors/colors';
+@import '../fonts/fonts';
+
+.trending-people-section {
+    display: flex;
+    flex-direction: column;
+
+    .trending-people-section-heading {
+        color: $white;
+        font-family: $font_oswald;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        margin-top: 30px;
+
+        h3 {
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: 500;
+            border-bottom: 1px solid white;
+            cursor: pointer;
+        }
+    }
+
+    .people-card-container {
+        margin: 10px;
+
+        .people-card {
+            color: $white;
+            font-family: $font_oswald;
+            display: flex;
+            flex-direction: column;
+            max-width: 200px;
+            gap: 5px;
+
+            .people-profile-photo {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                overflow: hidden;
+
+                img {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+            h6 {
+                text-align: center;
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            p {
+                text-align: center;
+                font-size: 14px;
+                font-weight: 300;
+                color: grey;
+            }
+        }
+    }
+}

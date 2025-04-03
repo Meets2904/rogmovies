@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.top-rated-tv-slider-section {
+  display: flex;
+  flex-direction: column;
+}
+.top-rated-tv-slider-section .top-rated-tv-heading {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 30px;
+}
+.top-rated-tv-slider-section .top-rated-tv-heading h3 {
+  font-size: 30px;
+  font-weight: 500;
+}
+.top-rated-tv-slider-section .top-rated-tv-heading p {
+  font-size: 20px;
+  font-weight: 500;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+}
+.top-rated-tv-slider-section .movie-card-container {
+  margin: 10px 10px;
+}
+.top-rated-tv-slider-section .movie-card-container .upcoming-movie-card {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+}
+.top-rated-tv-slider-section .movie-card-container .upcoming-movie-card .upcoming-movie-poster {
+  height: 250px;
+  width: 200px;
+}
+.top-rated-tv-slider-section .movie-card-container .upcoming-movie-card .upcoming-movie-poster img {
+  height: 250px;
+  width: 200px;
+  border-radius: 15px;
+  border: 2px solid white;
+}
+.top-rated-tv-slider-section .movie-card-container .upcoming-movie-card h6 {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px;
+}
+.top-rated-tv-slider-section .movie-card-container .upcoming-movie-card .upcoming-movie-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+.top-rated-tv-slider-section .movie-card-container .upcoming-movie-card .upcoming-movie-date p {
+  font-size: 14px;
+  font-weight: 500;
+}
+.top-rated-tv-slider-section .movie-card-container .upcoming-movie-card .upcoming-movie-date .upcoming-movie-vote {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.top-rated-tv-slider-section .movie-card-container .upcoming-movie-card .upcoming-movie-date .upcoming-movie-vote span {
+  font-size: 14px;
+  font-weight: 500;
+}/*# sourceMappingURL=top_rated_tv_slider.css.map */

@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.profile-section-container .profile-card {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  border: 2px solid grey;
+  padding: 40px 100px 100px 100px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  color: white;
+  font-family: "Oswald", sans-serif;
+}
+.profile-section-container .profile-card .profile-avatar {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile-section-container .profile-card .profile-avatar img {
+  height: 250px;
+  width: 250px;
+}
+.profile-section-container .profile-card h6 {
+  text-align: left;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.profile-section-container .profile-card h6 span {
+  font-weight: 400;
+  color: darkgrey;
+}
+.profile-section-container .profile-card .log-out-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 25px;
+  border-radius: 15px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid grey;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+.profile-section-container .profile-card .log-out-btn:hover {
+  color: black;
+  background-color: red;
+  border: 1px solid black;
+}/*# sourceMappingURL=profile_page.css.map */

@@ -1,0 +1,96 @@
+@import '../fonts/fonts';
+@import '../colors/colors';
+
+.nav-bar {
+    width: 100%;
+    border-radius: 25px;
+    margin: 15px auto 10px auto !important;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $white;
+    font-family: $font_oswald;
+    // background-color: bisque;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    .nav-bar-tab-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+
+        .nav-logo {
+            height: 55px;
+            width: 55px;
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            gap: 10px;
+
+            .nav-logo-container {
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                gap: 10px;
+                text-decoration: none;
+                img {
+                    height: 55px;
+                    width: 55px;
+                }
+
+                p {
+                    color: $white;
+                    font-family: $font_oswald;
+                    font-size: 30px;
+                }
+            }
+
+
+        }
+
+        .movies-tab-container {
+
+            h6 {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-size: 20px;
+                font-weight: 500;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+
+        .tv-shows-container {
+
+            h6 {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-size: 20px;
+                font-weight: 500;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    .nav-bar-functionality-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+
+    }
+}

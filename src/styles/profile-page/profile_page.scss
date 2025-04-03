@@ -1,0 +1,61 @@
+@import '../colors/colors';
+@import '../fonts/fonts';
+
+
+.profile-section-container {
+
+    .profile-card {
+        position: absolute;
+        top: 20%;
+        left: 40%;
+        border: 2px solid grey;
+        padding: 40px 100px 100px 100px;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        color: $white;
+        font-family: $font_oswald;
+
+        .profile-avatar {
+            height: 250px;
+            width: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                height: 250px;
+                width: 250px;
+            }
+        }
+
+        h6 {
+            text-align: left;
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: 500;
+
+            span{
+                font-weight: 400;
+                color: darkgrey;
+            }
+        }
+
+        .log-out-btn{
+            width: fit-content;
+            padding: 5px 25px;
+            border-radius: 15px;
+            background-color: transparent;
+            color: $white;
+            border: 1px solid grey;
+            cursor: pointer;
+            transition: 0.3s ease-in;
+        }
+        .log-out-btn:hover{
+            color: black;
+            background-color: red;
+            border: 1px solid black;
+        }
+    }
+}

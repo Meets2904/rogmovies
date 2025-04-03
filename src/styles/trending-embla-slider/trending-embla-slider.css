@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.trending-section-container {
+  display: flex;
+  flex-direction: column;
+}
+.trending-section-container .trending-movies-heading {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 40px;
+}
+.trending-section-container .trending-movies-heading h3 {
+  font-size: 30px;
+  font-weight: 500;
+}
+.trending-section-container .trending-movies-heading .day-week-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.trending-section-container .trending-movies-heading .day-week-toggle-btn button {
+  padding: 5px 12px 5px 12px;
+  border-radius: 15px;
+  border: none;
+  font-family: "Oswald", sans-serif;
+  background-color: rgb(224, 220, 220);
+  cursor: pointer;
+}
+.trending-section-container .trending-movies-heading .day-week-toggle-btn .clicked {
+  background-color: red;
+  color: white;
+}
+.trending-section-container .movie-card-container {
+  margin: 10px 10px;
+}
+.trending-section-container .movie-card-container .upcoming-movie-card {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+}
+.trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-poster {
+  height: 250px;
+  width: 200px;
+}
+.trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-poster img {
+  height: 250px;
+  width: 200px;
+  border-radius: 15px;
+  border: 2px solid white;
+}
+.trending-section-container .movie-card-container .upcoming-movie-card h6 {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px;
+}
+.trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+.trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date p {
+  font-size: 14px;
+  font-weight: 500;
+}
+.trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date .upcoming-movie-vote {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date .upcoming-movie-vote span {
+  font-size: 14px;
+  font-weight: 500;
+}/*# sourceMappingURL=trending-embla-slider.css.map */

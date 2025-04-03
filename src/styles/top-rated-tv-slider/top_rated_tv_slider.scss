@@ -1,0 +1,82 @@
+@import '../colors/colors';
+@import '../fonts/fonts';
+
+
+.top-rated-tv-slider-section{
+    display: flex;
+    flex-direction: column;
+
+    .top-rated-tv-heading{
+        color: $white;
+        font-family: $font_oswald;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        margin-top: 30px;
+
+        h3{
+            font-size: 30px;
+            font-weight: 500;
+        }
+        p{
+            font-size: 20px;
+            font-weight: 500;
+            border-bottom: 1px solid white;
+            cursor: pointer;
+        }
+    }
+
+
+    .movie-card-container{
+        margin: 10px 10px;
+    
+        .upcoming-movie-card {
+            color: $white;
+            font-family: $font_oswald;
+            display: flex;
+            flex-direction: column;
+            max-width: 250px;
+        
+            .upcoming-movie-poster {
+                height: 250px;
+                width: 200px;
+                img{
+                    height: 250px;
+                    width: 200px;
+                    border-radius: 15px;
+                    border: 2px solid white;
+                }
+            }
+        
+            h6{
+                font-size: 16px;
+                font-weight: 500;
+                padding: 5px;
+            }
+        
+            .upcoming-movie-date{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px;
+        
+                p{
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+        
+                .upcoming-movie-vote{
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+        
+                    span{
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}

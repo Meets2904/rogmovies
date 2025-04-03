@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.nav-bar {
+  width: 100%;
+  border-radius: 25px;
+  margin: 15px auto 10px auto !important;
+  background: transparent;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-family: "Oswald", sans-serif;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+.nav-bar .nav-bar-tab-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+.nav-bar .nav-bar-tab-container .nav-logo {
+  height: 55px;
+  width: 55px;
+  display: flex;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 10px;
+}
+.nav-bar .nav-bar-tab-container .nav-logo .nav-logo-container {
+  display: flex;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-bar .nav-bar-tab-container .nav-logo .nav-logo-container img {
+  height: 55px;
+  width: 55px;
+}
+.nav-bar .nav-bar-tab-container .nav-logo .nav-logo-container p {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  font-size: 30px;
+}
+.nav-bar .nav-bar-tab-container .movies-tab-container h6 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.nav-bar .nav-bar-tab-container .movies-tab-container h6 span {
+  display: flex;
+  align-items: center;
+}
+.nav-bar .nav-bar-tab-container .tv-shows-container h6 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.nav-bar .nav-bar-tab-container .tv-shows-container h6 span {
+  display: flex;
+  align-items: center;
+}
+.nav-bar .nav-bar-functionality-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}/*# sourceMappingURL=navbar.css.map */
