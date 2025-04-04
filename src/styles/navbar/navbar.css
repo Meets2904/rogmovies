@@ -75,4 +75,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+}
+.nav-bar .nav-bar-functionality-container .user-profile .user_image {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
 }/*# sourceMappingURL=navbar.css.map */

@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 
-
+    // const request_token = localStorage.getItem("request_token")
 
     return (
         <nav className='nav-bar container'>
@@ -34,10 +34,10 @@ const Navbar = () => {
 
             <div className='nav-bar-functionality-container'>
                 <div className='add-to-fav'>
-                    <NavLink to='/whishlist-page'><Heart color='white'/></NavLink>
+                    <NavLink to={`${ localStorage.getItem("sessionId") ? '/whishlist-page' : '/login'}`}><Heart color='white'/></NavLink>
                 </div>
                 <div className='user-profile'>
-                    <NavLink to='/profile'><SquareUser color='white'/></NavLink>
+                    <NavLink to={`${ localStorage.getItem("sessionId") ? '/profile' : '/login'}`}>{ localStorage.getItem("sessionId") ? <img src="../../../src/assets/images/avatar.jpg" alt="" className='user_image'/> : <SquareUser color='white'/>}</NavLink>
                 </div>
             </div>
         </nav>

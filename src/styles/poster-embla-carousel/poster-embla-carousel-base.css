@@ -17,7 +17,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  background-color: var(--background-site);
+  /* background-color: var(--background-site); */
   color: var(--text-high-contrast);
   font-size: 1.6rem;
   line-height: 1.65;
