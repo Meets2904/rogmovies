@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import axiosInstance from '../../axios/axios-instance'
 import { Star } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
+import { NavLink } from 'react-router-dom'
 
 type PropType = {
   slides: number[]
@@ -12,6 +13,7 @@ type PropType = {
 }
 
 type TrendingMovieData = {
+  id: number;
   poster_path: string;
   title: string;
   release_date: string | number;
@@ -49,10 +51,9 @@ const TrendingEmblaSlider = (props: PropType) => {
   }
 
   const { isLoading, error, data: trendingData } = useQuery({
-    queryKey: ['trendingItemsData'],
+    queryKey: ['trendingItemsData', timeFrame],
     queryFn: fetchTrendingItemsByDay,
   })
-
 
   return (
     <section className='trending-section-container container'>
@@ -69,11 +70,11 @@ const TrendingEmblaSlider = (props: PropType) => {
           {trendingData?.map((movie: TrendingMovieData, index: number) => (
             <div className='embla_slide movie-card-container' key={index}>
               <div className='embla_slide_number upcoming-movie-card'>
-                <div className='upcoming-movie-poster'><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></div>
+                <div className='upcoming-movie-poster'><NavLink to={`/movie/detail/${movie?.id}`}><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></NavLink></div>
                 <h6>{movie?.title}</h6>
                 <div className='upcoming-movie-date'>
                   <p>{movie?.release_date}</p>
-                  <div className='upcoming-movie-vote'><Star size={18} fill='orange' color='orange' /><span>{movie?.vote_average}</span></div>
+                  <div className='upcoming-movie-vote'><Star size={18} fill='orange' color='orange'  className='star'/><span>{movie?.vote_average}</span></div>
                 </div>
               </div>
             </div>

@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.top-rated-tv-page {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.top-rated-tv-page .top-rated-tv-page-heading {
+  padding: 0 20px;
+}
+.top-rated-tv-page .top-rated-tv-page-heading p {
+  font-size: 30px;
+  font-weight: 500;
+  border-bottom: 1px solid white;
+}
+.top-rated-tv-page .all-top-rated-tv-container .top-rated-each-tv-page {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  row-gap: 40px;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.top-rated-tv-page .all-top-rated-tv-container .top-rated-each-tv-page .top-rated-tv-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 300px;
+}
+.top-rated-tv-page .all-top-rated-tv-container .top-rated-each-tv-page .top-rated-tv-card .top-rated-tv-card-poster {
+  width: 300px;
+  height: 350px;
+  border-radius: 15px;
+}
+.top-rated-tv-page .all-top-rated-tv-container .top-rated-each-tv-page .top-rated-tv-card .top-rated-tv-card-poster img {
+  width: 300px;
+  height: 350px;
+  border-radius: 15px;
+  border: 2px solid rgb(231, 79, 79);
+}
+.top-rated-tv-page .all-top-rated-tv-container .top-rated-each-tv-page .top-rated-tv-card h6 {
+  font-size: 20px;
+  font-weight: 500;
+}
+.top-rated-tv-page .all-top-rated-tv-container .top-rated-each-tv-page .top-rated-tv-card .top-rated-tv-date-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}/*# sourceMappingURL=top-rated-tv-page.css.map */

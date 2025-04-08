@@ -1,3 +1,7 @@
+@import './media-quaries';
+@import './colors/colors';
+@import './fonts/fonts';
+
 
 * {
     padding: 0;
@@ -13,4 +17,36 @@ body{
 .container{
     max-width: 1400px;
     margin: 0 auto;
+
+    @include breakpoint1 {
+        margin: 0 20px;
+    }
+    
+    @include breakpoint2 {
+        margin: 0 40px;
+    }
+
+    @include mobile_s {
+        margin: 0 15px;
+    }
+
+    @include mobile_m_l {
+        margin: 0 20px;
+    }
+
+    @include tablet_s {
+        margin: 0 25px;
+    }
+
+    @include tablet_l {
+        margin: 0 30px;
+    }
+
+    @include laptop_m {
+        margin: 0 35px;
+    }
+
+    @include laptop_l {
+        margin: 0 40px;
+    }
 }

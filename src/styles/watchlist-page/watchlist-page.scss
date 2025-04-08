@@ -1,0 +1,127 @@
+@import '../colors/colors';
+@import '../fonts/fonts';
+
+
+.watchlist-page-section{
+    color: $white;
+    font-family: $font_oswald;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .watchlist-page-heading-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        border: 2px solid gray;
+        border-radius: 20px;
+        margin-top: 15px;
+
+        h2{
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .movies-tv-toggle-btn{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            .movies-btn{
+                color: $white;
+                font-family: $font_oswald;
+                padding: 5px 20px;
+                background-color: transparent;
+                border: none;
+                border: 1px solid gray;
+                border-radius: 15px;
+                font-weight: 400;
+                font-size: 15px;
+                cursor: pointer;
+                transition: 0.1s ease-in;
+            }
+            
+            .tv-shows-btn{
+                color: $white;
+                font-family: $font_oswald;
+                padding: 5px 20px;
+                background-color: transparent;
+                border: none;
+                border: 1px solid gray;
+                border-radius: 15px;
+                font-weight: 400;
+                font-size: 15px;
+                cursor: pointer;
+                transition: 0.1s ease-in;
+            }
+
+            .selected-time-frame{
+                background-color: rgb(223, 99, 99);
+                color: black;
+                border-color: black;
+            }
+        }
+    }
+
+    .watchlist-card-container{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .watchlist-card{
+            border: 2px solid gray;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+            border-radius: 25px;
+
+            .watchlist-item-poster{
+                border-radius: 20px;
+                width: 200px;
+                height: 300px;
+                
+                img{
+                    border-radius: 20px;
+                    height: 300px;
+                    width: 200px;
+                    border: 2px solid rgb(230, 68, 68);
+                }
+            }
+
+            .watchlist-item-details{
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                font-family: $font_oswald;
+                color: $white;
+                h6{
+                    font-size: 18px;
+                    font-weight: 500;
+
+                    span{
+                        color: grey;
+                    }
+                }
+
+                h5{
+                    font-size: 18px;
+                    font-weight: 500;
+
+                    span{
+                        color: grey;
+                    }
+                }
+
+                p{
+                    font-size: 18px;
+                    font-weight: 500;
+
+                    span{
+                        color: grey;
+                    }
+                }
+            }
+        }
+    }
+}

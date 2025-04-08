@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import '../../styles/not-found-page/not_found_page.css'
+import '../../styles/not-found-page/not-found-page.css'
 
 
 const NotFoundPage = () => {

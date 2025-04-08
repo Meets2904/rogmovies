@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.trending-people-section {
+  display: flex;
+  flex-direction: column;
+}
+.trending-people-section .trending-people-section-heading {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 30px;
+}
+@media screen and (max-width: 600px) {
+  .trending-people-section .trending-people-section-heading {
+    margin-top: 0;
+    padding: 5px;
+  }
+}
+.trending-people-section .trending-people-section-heading h3 {
+  font-size: 30px;
+  font-weight: 500;
+}
+@media screen and (max-width: 600px) {
+  .trending-people-section .trending-people-section-heading h3 {
+    font-size: 20px;
+  }
+}
+.trending-people-section .trending-people-section-heading p {
+  font-size: 20px;
+  font-weight: 500;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+}
+.trending-people-section .people-card-container {
+  margin: 10px;
+}
+.trending-people-section .people-card-container .people-card {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  gap: 5px;
+}
+@media screen and (max-width: 600px) {
+  .trending-people-section .people-card-container .people-card {
+    max-width: 150px;
+    gap: 2px;
+  }
+}
+.trending-people-section .people-card-container .people-card .people-profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+@media screen and (max-width: 600px) {
+  .trending-people-section .people-card-container .people-card .people-profile-photo {
+    width: 100px;
+    height: 100px;
+  }
+}
+.trending-people-section .people-card-container .people-card .people-profile-photo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+@media screen and (max-width: 600px) {
+  .trending-people-section .people-card-container .people-card .people-profile-photo img {
+    width: 100px;
+    height: 100px;
+  }
+}
+.trending-people-section .people-card-container .people-card h6 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+@media screen and (max-width: 600px) {
+  .trending-people-section .people-card-container .people-card h6 {
+    font-size: 14px;
+  }
+}
+.trending-people-section .people-card-container .people-card p {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  color: grey;
+}
+@media screen and (max-width: 600px) {
+  .trending-people-section .people-card-container .people-card p {
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=trending-people-slider.css.map */

@@ -12,14 +12,30 @@
   padding: 10px;
   margin-top: 40px;
 }
+@media screen and (max-width: 600px) {
+  .trending-section-container .trending-movies-heading {
+    margin-top: 20px;
+    padding: 5px;
+  }
+}
 .trending-section-container .trending-movies-heading h3 {
   font-size: 30px;
   font-weight: 500;
+}
+@media screen and (max-width: 600px) {
+  .trending-section-container .trending-movies-heading h3 {
+    font-size: 16px;
+  }
 }
 .trending-section-container .trending-movies-heading .day-week-toggle-btn {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+@media screen and (max-width: 600px) {
+  .trending-section-container .trending-movies-heading .day-week-toggle-btn {
+    gap: 5px;
+  }
 }
 .trending-section-container .trending-movies-heading .day-week-toggle-btn button {
   padding: 5px 12px 5px 12px;
@@ -28,6 +44,12 @@
   font-family: "Oswald", sans-serif;
   background-color: rgb(224, 220, 220);
   cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .trending-section-container .trending-movies-heading .day-week-toggle-btn button {
+    padding: 2px 5px 2px 5px;
+    font-size: 12px;
+  }
 }
 .trending-section-container .trending-movies-heading .day-week-toggle-btn .clicked {
   background-color: red;
@@ -43,9 +65,20 @@
   flex-direction: column;
   max-width: 250px;
 }
+@media screen and (max-width: 600px) {
+  .trending-section-container .movie-card-container .upcoming-movie-card {
+    max-width: 200px;
+  }
+}
 .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-poster {
   height: 250px;
   width: 200px;
+}
+@media screen and (max-width: 600px) {
+  .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-poster {
+    width: 150px;
+    height: 200px;
+  }
 }
 .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-poster img {
   height: 250px;
@@ -53,10 +86,21 @@
   border-radius: 15px;
   border: 2px solid white;
 }
+@media screen and (max-width: 600px) {
+  .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-poster img {
+    width: 150px;
+    height: 200px;
+  }
+}
 .trending-section-container .movie-card-container .upcoming-movie-card h6 {
   font-size: 16px;
   font-weight: 500;
   padding: 5px;
+}
+@media screen and (max-width: 600px) {
+  .trending-section-container .movie-card-container .upcoming-movie-card h6 {
+    font-size: 14px;
+  }
 }
 .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date {
   display: flex;
@@ -68,12 +112,27 @@
   font-size: 14px;
   font-weight: 500;
 }
+@media screen and (max-width: 600px) {
+  .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date p {
+    font-size: 12px;
+  }
+}
 .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date .upcoming-movie-vote {
   display: flex;
   align-items: center;
   gap: 4px;
 }
+@media screen and (max-width: 600px) {
+  .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date .upcoming-movie-vote .star {
+    height: 14px;
+  }
+}
 .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date .upcoming-movie-vote span {
   font-size: 14px;
   font-weight: 500;
+}
+@media screen and (max-width: 600px) {
+  .trending-section-container .movie-card-container .upcoming-movie-card .upcoming-movie-date .upcoming-movie-vote span {
+    font-size: 12px;
+  }
 }/*# sourceMappingURL=trending-embla-slider.css.map */

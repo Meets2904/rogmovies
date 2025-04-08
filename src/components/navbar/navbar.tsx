@@ -12,32 +12,32 @@ const Navbar = () => {
     return (
         <nav className='nav-bar container'>
             <div className='nav-bar-tab-container'>
-                <div className='nav-logo'>
-                    <NavLink to='/' className='nav-logo-container'>
-                    <img src={nav_logo} alt="" />
-                    <p>Movies App</p>
-                    </NavLink>
-                </div>
+                <NavLink to='/' className='nav-logo-container'>
+                    <div className='nav-logo'>
+                        <img src={nav_logo} alt="" />
+                        <p>Movies App</p>
+                    </div>
+                </NavLink>
 
                 <div className='movies-tab-container'>
                     {/* <NavLink to='/'> */}
-                    <h6>Movies <span><ChevronDown /></span></h6>
+                    <h6>Movies <span><ChevronDown className='arrow-down' /></span></h6>
                     {/* </NavLink> */}
                 </div>
 
                 <div className='tv-shows-container'>
                     {/* <NavLink to='/'> */}
-                    <h6>TV Shows <span><ChevronDown /></span></h6>
+                    <h6>TV Shows <span><ChevronDown className='arrow-down' /></span></h6>
                     {/* </NavLink> */}
                 </div>
             </div>
 
             <div className='nav-bar-functionality-container'>
                 <div className='add-to-fav'>
-                    <NavLink to={`${ localStorage.getItem("sessionId") ? '/whishlist-page' : '/login'}`}><Heart color='white'/></NavLink>
+                    <NavLink to={`${localStorage.getItem("sessionId") ? '/watchlist-page' : '/login'}`}><Heart color='white' className='heart-icon' /></NavLink>
                 </div>
                 <div className='user-profile'>
-                    <NavLink to={`${ localStorage.getItem("sessionId") ? '/profile' : '/login'}`}>{ localStorage.getItem("sessionId") ? <img src="../../../src/assets/images/avatar.jpg" alt="" className='user_image'/> : <SquareUser color='white'/>}</NavLink>
+                    <NavLink to={`${localStorage.getItem("sessionId") ? '/profile' : '/login'}`}>{localStorage.getItem("sessionId") ? <img src="../../../src/assets/images/avatar.jpg" alt="" className='user_image' /> : <SquareUser color='white' />}</NavLink>
                 </div>
             </div>
         </nav>

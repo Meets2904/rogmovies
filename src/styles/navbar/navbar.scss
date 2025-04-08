@@ -1,5 +1,6 @@
 @import '../fonts/fonts';
 @import '../colors/colors';
+@import '../media-quaries';
 
 .nav-bar {
     width: 100%;
@@ -18,35 +19,90 @@
     top: 0;
     z-index: 9999;
 
+    @include breakpoint1 {
+        width: auto;
+        margin: 10px 10px 5px 10px !important;
+        padding: 5px 10px;
+    }
+    @include breakpoint2 {
+        width: auto;
+        margin: 10px 10px 5px 10px !important;
+        padding: 10px 15px;
+    }
+
     .nav-bar-tab-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 50px;
 
-        .nav-logo {
-            height: 55px;
-            width: 55px;
-            display: flex;
-            align-items: center;
-            width: fit-content;
+        @include breakpoint1 {
             gap: 10px;
+            width: 75%;
+        }
+        @include breakpoint2 {
+            gap: 10px;
+            width: 75%;
+        }
 
-            .nav-logo-container {
+        .nav-logo-container {
+            text-decoration: none;
+
+            .nav-logo {
+                height: 55px;
+                width: 55px;
                 display: flex;
                 align-items: center;
                 width: fit-content;
                 gap: 10px;
+
+                @include breakpoint1 {
+                    height: 30px;
+                    width: 30px;
+                    gap: 5px;
+                    width: auto;
+                }
+                @include breakpoint2 {
+                    height: 45px;
+                    width: 45px;
+                    gap: 5px;
+                    width: auto;
+                }
+
+                display: flex;
+                align-items: center;
+                gap: 10px;
                 text-decoration: none;
+
+                @include breakpoint1 {
+                    gap: 5px;
+                }
+
                 img {
                     height: 55px;
                     width: 55px;
+
+                    @include breakpoint1 {
+                        height: 30px;
+                        width: 30px;
+                    }
+                    @include breakpoint2 {
+                        height: 45px;
+                        width: 45px;
+                    }
                 }
 
                 p {
                     color: $white;
                     font-family: $font_oswald;
                     font-size: 30px;
+
+                    @include breakpoint1 {
+                        font-size: 11px;
+                    }
+                    @include breakpoint2 {
+                        font-size: 20px;
+                    }
                 }
             }
 
@@ -62,9 +118,29 @@
                 font-size: 20px;
                 font-weight: 500;
 
+                @include breakpoint1 {
+                    gap: 2px;
+                    font-size: 11px;
+                }
+                @include breakpoint2 {
+                    gap: 2px;
+                    font-size: 20px;
+                }
+
                 span {
                     display: flex;
                     align-items: center;
+
+                    @include breakpoint1 {
+                        height: 10px;
+                        width: 16px;
+                    }
+
+                    .arrow-down {
+                        @include breakpoint1 {
+                            font-size: 10px;
+                        }
+                    }
                 }
             }
         }
@@ -78,9 +154,29 @@
                 font-size: 20px;
                 font-weight: 500;
 
+                @include breakpoint1 {
+                    font-size: 11px;
+                    gap: 2px;
+                }
+                @include breakpoint2 {
+                    gap: 2px;
+                    font-size: 20px;
+                }
+
                 span {
                     display: flex;
                     align-items: center;
+
+                    @include breakpoint1 {
+                        height: 10px;
+                        width: 16px;
+                    }
+
+                    .arrow-down {
+                        @include breakpoint1 {
+                            font-size: 10px;
+                        }
+                    }
                 }
             }
         }
@@ -92,11 +188,32 @@
         justify-content: space-between;
         gap: 30px;
 
-        .user-profile{
-            .user_image{
+        @include breakpoint1 {
+            gap: 10px;
+        }
+        @include breakpoint2 {
+            gap: 20px;
+        }
+
+        .add-to-fav {
+            .heart-icon {
+                @include breakpoint1 {
+                    height: 20px;
+                }
+            }
+        }
+
+        .user-profile {
+
+            .user_image {
                 height: 45px;
                 width: 45px;
                 border-radius: 50%;
+
+                @include breakpoint1 {
+                    height: 25px;
+                    width: 25px;
+                }
             }
         }
 

@@ -143,3 +143,25 @@
   .current_img{
     opacity: 0.5;
   }
+
+  @media only screen and (max-width: 600px){
+    .embla-heading{
+      margin-bottom: 15px;
+    }
+  
+    .embla-heading h2{
+      font-size: 20px;
+    }
+
+    .embla__slide__number {
+      height: 250px;
+    }
+
+    .embla {
+      margin-top: 15px;
+    }
+
+    .embla__controls {
+      margin-top: 5px;
+    }
+  }

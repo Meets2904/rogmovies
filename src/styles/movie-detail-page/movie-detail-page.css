@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.movie-details-section {
+  color: white;
+  font-family: "Oswald", sans-serif;
+}
+.movie-details-section .movie-background-poster img {
+  max-width: 1920px;
+  max-height: 800px;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: linear-gradient(to top, rgba(255, 219, 219, 0) 8%, rgba(0, 0, 0, 0.904) 80%);
+          mask-image: linear-gradient(to top, rgba(255, 219, 219, 0) 8%, rgba(0, 0, 0, 0.904) 80%);
+}
+.movie-details-section .movie-detail-page-container {
+  position: relative;
+  top: -310px;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster {
+  height: 350px;
+  width: 300px;
+  border-radius: 20px;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster img {
+  height: 350px;
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-details h2 {
+  font-size: 25px;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-release-date {
+  font-size: 20px;
+  color: rgb(189, 187, 187);
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-genre-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-genre-container p {
+  padding: 5px 10px;
+  background-color: rgba(51, 65, 85, 0.5019607843);
+  border-radius: 10px;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-overview-detail {
+  font-size: 18px;
+  font-weight: 300;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .add-to-watchlist-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 25px;
+  border-radius: 15px;
+  border: none;
+  background-color: black;
+  color: white;
+  border: 2px solid grey;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  font-family: "Oswald", sans-serif;
+}
+.movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .add-to-watchlist-btn:hover {
+  background-color: red;
+  border-color: black;
+}/*# sourceMappingURL=movie-detail-page.css.map */

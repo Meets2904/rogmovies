@@ -1,5 +1,6 @@
 @import '../colors/colors';
 @import '../fonts/fonts';
+@import '../media-quaries';
 
 
 .trending-section-container{
@@ -14,15 +15,26 @@
         justify-content: space-between;
         padding: 10px;
         margin-top: 40px;
+        @include breakpoint1 {
+            margin-top: 20px;
+            padding: 5px;
+        }
 
         h3{
             font-size: 30px;
             font-weight: 500;
+            @include breakpoint1{
+                font-size: 16px;
+            }
         }
         .day-week-toggle-btn{
             display: flex;
             align-items: center;
             gap: 15px;
+            @include breakpoint1 {
+                gap: 5px;
+            }
+
             button{
                 padding: 5px 12px 5px 12px;
                 border-radius: 15px;
@@ -30,6 +42,10 @@
                 font-family: $font_oswald;
                 background-color: rgb(224, 220, 220);
                 cursor: pointer;
+                @include breakpoint1 {
+                    padding: 2px 5px 2px 5px;
+                    font-size: 12px;
+                }
             }
             .clicked{
                 background-color: red;
@@ -48,15 +64,26 @@
             display: flex;
             flex-direction: column;
             max-width: 250px;
+            @include breakpoint1{
+                max-width: 200px;
+            }
         
             .upcoming-movie-poster {
                 height: 250px;
                 width: 200px;
+                @include breakpoint1{
+                    width: 150px;
+                    height: 200px;
+                }
                 img{
                     height: 250px;
                     width: 200px;
                     border-radius: 15px;
                     border: 2px solid white;
+                    @include breakpoint1{
+                        width: 150px;
+                        height: 200px;
+                    }
                 }
             }
         
@@ -64,6 +91,9 @@
                 font-size: 16px;
                 font-weight: 500;
                 padding: 5px;
+                @include breakpoint1{
+                    font-size: 14px;
+                }
             }
         
             .upcoming-movie-date{
@@ -75,16 +105,27 @@
                 p{
                     font-size: 14px;
                     font-weight: 500;
+                    @include breakpoint1{
+                        font-size: 12px;
+                    }
                 }
         
                 .upcoming-movie-vote{
                     display: flex;
                     align-items: center;
                     gap: 4px;
+                    .star{
+                        @include breakpoint1{
+                            height: 14px;
+                        }
+                    }
         
                     span{
                         font-size: 14px;
                         font-weight: 500;
+                        @include breakpoint1{
+                            font-size: 12px;
+                        }
                     }
                 }
             }

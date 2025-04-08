@@ -2,7 +2,7 @@ import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../axios/axios-instance'
-import '../../styles/trending-people-slider/trending_people_slider.css';
+import '../../styles/trending-people-slider/trending-people-slider.css';
 import { useQuery } from '@tanstack/react-query';
 
 type PropType = {
@@ -44,7 +44,6 @@ const TrendingPeopleSlider = (props: PropType) => {
         <section className='trending-people-section container'>
             <div className='trending-people-section-heading'>
                 <h3>Trending People</h3>
-                <p>See All</p>
             </div>
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">

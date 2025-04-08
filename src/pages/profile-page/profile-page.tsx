@@ -1,6 +1,6 @@
 // import React from 'react'
 import { useQuery } from '@tanstack/react-query';
-import '../../styles/profile-page/profile_page.css';
+import '../../styles/profile-page/profile-page.css';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axios/axios-instance';
 

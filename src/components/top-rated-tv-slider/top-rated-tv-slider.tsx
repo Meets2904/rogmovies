@@ -2,8 +2,9 @@ import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import axiosInstance from '../../axios/axios-instance'
 import { Star } from 'lucide-react'
-import '../../styles/top-rated-tv-slider/top_rated_tv_slider.css'
+import '../../styles/top-rated-tv-slider/top-rated-tv-slider.css'
 import { useQuery } from '@tanstack/react-query'
+import { NavLink } from 'react-router-dom'
 
 
 type PropType = {
@@ -12,6 +13,7 @@ type PropType = {
 }
 
 type TopRatedTvData = {
+    id: number;
     poster_path: string;
     name: string;
     first_air_date: string | number;
@@ -45,7 +47,7 @@ const TopRatedTvSlider = (props: PropType) => {
         <section className='top-rated-tv-slider-section container'>
             <div className='top-rated-tv-heading'>
                 <h3>Top Rated TV Series</h3>
-                <p>See All</p>
+                <NavLink to='/top-rated-tv-series' className='see-all-link'><p>See All</p></NavLink>
             </div>
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
@@ -53,13 +55,13 @@ const TopRatedTvSlider = (props: PropType) => {
                         <div className='embla_slide movie-card-container' key={index}>
                             <div className='embla_slide_number upcoming-movie-card'>
                                 <div className='upcoming-movie-poster'>
-                                    <img src={`${image_url_300}${movie?.poster_path}`} alt="" />
+                                    <NavLink to={`/tv-show/detail/${movie?.id}`}><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></NavLink>
                                 </div>
                                 <h6>{movie?.name}</h6>
                                 <div className='upcoming-movie-date'>
                                     <p>{movie?.first_air_date || "NA"}</p>
                                     <div className='upcoming-movie-vote'>
-                                        <Star size={18} fill='orange' color='orange' />
+                                        <Star size={18} fill='orange' color='orange' className='star'/>
                                         <span>{(movie?.vote_average).toFixed(2)}</span>
                                     </div>
                                 </div>

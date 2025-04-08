@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.watchlist-page-section {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.watchlist-page-section .watchlist-page-heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border: 2px solid gray;
+  border-radius: 20px;
+  margin-top: 15px;
+}
+.watchlist-page-section .watchlist-page-heading-container h2 {
+  font-size: 28px;
+  font-weight: 500;
+}
+.watchlist-page-section .watchlist-page-heading-container .movies-tv-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.watchlist-page-section .watchlist-page-heading-container .movies-tv-toggle-btn .movies-btn {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  padding: 5px 20px;
+  background-color: transparent;
+  border: none;
+  border: 1px solid gray;
+  border-radius: 15px;
+  font-weight: 400;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.1s ease-in;
+}
+.watchlist-page-section .watchlist-page-heading-container .movies-tv-toggle-btn .tv-shows-btn {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  padding: 5px 20px;
+  background-color: transparent;
+  border: none;
+  border: 1px solid gray;
+  border-radius: 15px;
+  font-weight: 400;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.1s ease-in;
+}
+.watchlist-page-section .watchlist-page-heading-container .movies-tv-toggle-btn .selected-time-frame {
+  background-color: rgb(223, 99, 99);
+  color: black;
+  border-color: black;
+}
+.watchlist-page-section .watchlist-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card {
+  border: 2px solid gray;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 25px;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-poster {
+  border-radius: 20px;
+  width: 200px;
+  height: 300px;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-poster img {
+  border-radius: 20px;
+  height: 300px;
+  width: 200px;
+  border: 2px solid rgb(230, 68, 68);
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: "Oswald", sans-serif;
+  color: white;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-details h6 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-details h6 span {
+  color: grey;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-details h5 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-details h5 span {
+  color: grey;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-details p {
+  font-size: 18px;
+  font-weight: 500;
+}
+.watchlist-page-section .watchlist-card-container .watchlist-card .watchlist-item-details p span {
+  color: grey;
+}/*# sourceMappingURL=watchlist-page.css.map */

@@ -1,0 +1,32 @@
+@import '../colors/colors';
+@import '../fonts/fonts';
+@import '../media-quaries';
+
+.movies-video-container{
+    color: $white;
+    font-family: $font_oswald;
+    display: flex;
+    flex-direction: column;
+
+    .movie-videos-heading{
+
+        h5{
+            font-size: 25px;
+            font-weight: 500;
+            border-bottom: 1px solid grey;
+        }
+    }
+
+    .video-card{
+        margin: 0 20px;
+        justify-content: space-between !important;
+        max-width: 550px !important;
+        border-radius: 25px;
+
+        .iframe-link{
+            border-radius: 25px;
+            max-width: 550px;
+            max-height: 400px;
+        }
+    }
+}

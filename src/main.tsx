@@ -9,6 +9,11 @@ import ProfilePage from './pages/profile-page/profile-page.tsx';
 import LoginPage from './pages/login-page/login-page.tsx';
 import HomePage from './pages/home-page/home-page.tsx';
 import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
+import WatchListPage from './pages/watchlist-page/watchlist-page.tsx';
+import UpcomingMoviesPage from './pages/upcoming-movies-page/upcoming-movies-page.tsx';
+import TopRatedTvPage from './pages/top-rated-tv-series-page/top-rated-tv-page.tsx';
+import MovieDetailPage from './pages/movie-detail-page/movie-detail-page.tsx';
+import TvDetailPge from './pages/tv-detail-page/tv-detail-page.tsx';
 
 
 const queryClient = new QueryClient();
@@ -30,6 +35,26 @@ const router = createBrowserRouter([
       {
         path: '/approved',
         element: <HomePage />,
+      },
+      {
+        path: '/watchlist-page',
+        element: <WatchListPage />,
+      },
+      {
+        path: '/upcoming-movies-page',
+        element: <UpcomingMoviesPage />,
+      },
+      {
+        path: '/top-rated-tv-series',
+        element: <TopRatedTvPage />
+      },
+      {
+        path: '/movie/detail/:movieID',
+        element: <MovieDetailPage />
+      },
+      {
+        path: '/tv-show/detail/:tvshowID',
+        element: <TvDetailPge />
       },
     ]
   },

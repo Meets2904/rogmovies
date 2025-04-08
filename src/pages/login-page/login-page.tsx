@@ -1,4 +1,4 @@
-import '../../styles/login-page/login_page.css'
+import '../../styles/login-page/login-page.css'
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";

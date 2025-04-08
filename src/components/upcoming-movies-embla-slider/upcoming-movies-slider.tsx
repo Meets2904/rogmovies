@@ -1,9 +1,10 @@
-import '../../styles/upcoming-movies-embla-slider/upcoming_movies_slider.css'
+import '../../styles/upcoming-movies-embla-slider/upcoming-movies-slider.css'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import axiosInstance from '../../axios/axios-instance';
 import { Star } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
+import { NavLink } from 'react-router-dom';
 
 type PropType = {
     slides: number[]
@@ -11,6 +12,7 @@ type PropType = {
 }
 
 type UpcomingMovieData = {
+    id: number;
     poster_path: string;
     title: string;
     release_date: string | number;
@@ -45,18 +47,18 @@ const UpcomingMoviesSlider = (props: PropType) => {
         <section className='upcoming-movies-section container'>
             <div className='upcoming-movies-heading'>
                 <h3>Upcoming Movies</h3>
-                <p>See All</p>
+                <NavLink to='upcoming-movies-page' className='see-all-link'><p>See All</p></NavLink>
             </div>
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
                     {moviesData?.map((movie: UpcomingMovieData, index: number) => (
                         <div className='embla_slide movie-card-container' key={index}>
                             <div className='embla_slide_number upcoming-movie-card'>
-                                <div className='upcoming-movie-poster'><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></div>
+                                <div className='upcoming-movie-poster'><NavLink to={`/movie/detail/${movie?.id}`}><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></NavLink></div>
                                 <h6>{movie?.title}</h6>
                                 <div className='upcoming-movie-date'>
                                     <p>{movie?.release_date}</p>
-                                    <div className='upcoming-movie-vote'><Star size={18} fill='orange' color='orange' /><span>{movie?.vote_average}</span></div>
+                                    <div className='upcoming-movie-vote'><Star size={18} fill='orange' color='orange' className='star'/><span>{movie?.vote_average}</span></div>
                                 </div>
                             </div>
                         </div>
