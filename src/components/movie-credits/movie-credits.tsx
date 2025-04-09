@@ -7,7 +7,8 @@ import '../../styles/movie-credits/movie-credits.css';
 type PropType = {
     slides: number[]
     options?: EmblaOptionsType
-    movieID: any
+    movieID?: any
+    tvshowID?: any
 }
 
 type CastData = {
@@ -27,18 +28,31 @@ const MovieCredits = (props: PropType) => {
 
 
     const fetchMovieCredits = async () => {
-        try {
-            const response = await axiosInstance.get(`movie/${props?.movieID}/credits?language=en-US&api_key=${api_key}`)
-            return response?.data.cast
-        } catch (error) {
-            console.log(error)
+        if (props?.movieID) {
+            try {
+                const response = await axiosInstance.get(`movie/${props?.movieID}/credits?language=en-US&api_key=${api_key}`)
+                return response?.data.cast
+            } catch (error) {
+                console.log(error)
+            }
+        } else if (props?.tvshowID){
+            try {
+                const response = await axiosInstance.get(`tv/${props?.tvshowID}/credits?language=en-US&api_key=${api_key}`)
+                return response?.data.cast
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
     const { data: castData } = useQuery({
-        queryKey: ['movieCredits'],
+        queryKey: ['movieCredits', props?.movieID, props?.tvshowID],
         queryFn: fetchMovieCredits,
     })
+
+    if (!castData || castData?.length === 0) {
+        return null;
+      }
 
 
     return (

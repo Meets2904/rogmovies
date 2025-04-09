@@ -5,6 +5,9 @@ import '../../styles/movie-detail-page/movie-detail-page.css';
 import MovieCredits from '../../components/movie-credits/movie-credits';
 import { EmblaOptionsType } from 'embla-carousel';
 import MovieVideos from '../../components/movie-videos/movie-videos';
+import MovieReviews from '../../components/movie-reviews/movie-reviews';
+import MovieRecommendations from '../../components/movie-recommendations/movie-recommendations';
+import AddWatchlistBtn from '../../components/ui/add-to-watchlist-btn/add-to-watchlist-btn';
 
 // Movie Credits Slider
 const movie_cast_options: EmblaOptionsType = { dragFree: true }
@@ -15,6 +18,11 @@ const movie_cast_slides = Array.from(Array(movie_cast_slide_count).keys())
 const movie_videos_options: EmblaOptionsType = { align: 'start' }
 const movie_videos_slide_count = 6
 const movie_videos_slides = Array.from(Array(movie_videos_slide_count).keys())
+
+// Movie Recommendations Slider
+const movie_recommendations_options: EmblaOptionsType = { dragFree: true }
+const movie_recommendations_slide_count = 20
+const movie_recommendations_slides = Array.from(Array(movie_recommendations_slide_count).keys())
 
 const MovieDetailPage = () => {
     const params = useParams();
@@ -33,9 +41,11 @@ const MovieDetailPage = () => {
     }
 
     const { data: movieData } = useQuery({
-        queryKey: ['movieDetails'],
+        queryKey: ['movieDetails', params?.movieID],
         queryFn: fetchMovieDetails,
     })
+
+    console.log(movieData)
 
     return (
         <section className='movie-details-section'>
@@ -52,7 +62,8 @@ const MovieDetailPage = () => {
                             <p key={index}>{genre?.name}</p>
                         ))}</div>
                         <p className='movie-overview-detail'>{movieData?.overview}</p>
-                        <button className='add-to-watchlist-btn'>Add To Watchlist</button>
+                        {/* <button className='add-to-watchlist-btn'>Add To Watchlist</button> */}
+                        <AddWatchlistBtn />
                     </div>
                 </div>
 
@@ -62,6 +73,14 @@ const MovieDetailPage = () => {
 
                 <div className='movie-videos'>
                         <MovieVideos movieID={params?.movieID} slides={movie_videos_slides} options={movie_videos_options}/>
+                </div>
+
+                <div className='movie-reviews'>
+                        <MovieReviews movieID={params?.movieID}/>
+                </div>
+
+                <div className='movie-recommendations'>
+                        <MovieRecommendations movieID={params?.movieID} slides={movie_recommendations_slides} options={movie_recommendations_options}/>
                 </div>
             </div>
         </section>

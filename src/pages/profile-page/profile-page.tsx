@@ -43,6 +43,8 @@ const ProfilePage = () => {
     queryFn: fetchUserDetails,
   })
 
+  console.log(user)
+
   return (
     <section className='profile-section-container container'>
       <div className='profile-card'>

@@ -14,7 +14,8 @@ import '../../styles/movie-videos/movie-videos.css';
 type PropType = {
     slides: number[]
     options?: EmblaOptionsType
-    movieID: any
+    movieID?: any
+    tvshowID?: any
 }
 
 type MovieVideosData = {
@@ -36,22 +37,36 @@ const MovieVideos = (props: PropType) => {
 
 
     const fetchMovieVideos = async () => {
-        try {
-            const response = await axiosInstance.get(`movie/${props?.movieID}/videos?language=en-US&api_key=${api_key}`)
-            const data = (response?.data.results).slice(0, 6)
-            return data
-        } catch (error) {
-            console.log(error)
+        if (props?.movieID) {
+            try {
+                const response = await axiosInstance.get(`movie/${props?.movieID}/videos?language=en-US&api_key=${api_key}`)
+                const data = (response?.data.results).slice(0, 6)
+                return data
+            } catch (error) {
+                console.log(error)
+            }
+        }else if (props?.tvshowID) {
+            try {
+                const response = await axiosInstance.get(`tv/${props?.tvshowID}/videos?language=en-US&api_key=${api_key}`)
+                const data = (response?.data.results).slice(0, 6)
+                return data
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
 
     const { data: moviesVideosData } = useQuery({
-        queryKey: ['movieVideosData'],
+        queryKey: ['movieVideosData', props?.movieID, props?.tvshowID],
         queryFn: fetchMovieVideos,
     })
 
     console.log("Videos", moviesVideosData)
+
+    if (!moviesVideosData || moviesVideosData?.length === 0) {
+        return null;
+      }
     return (
         <section className="embla movies-video-container">
             <div className="movie-videos-heading"><h5>Videos</h5></div>

@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+.movie-recommendations-section {
+  display: flex;
+  flex-direction: column;
+}
+.movie-recommendations-section .movie-recommendations-heading {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  margin-top: 30px;
+  border-bottom: 1px solid grey;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-heading {
+    margin-top: 10px;
+    padding: 5px;
+  }
+}
+.movie-recommendations-section .movie-recommendations-heading h3 {
+  font-size: 25px;
+  font-weight: 500;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-heading h3 {
+    font-size: 18px;
+  }
+}
+.movie-recommendations-section .movie-recommendations-container {
+  margin: 10px 10px;
+}
+.movie-recommendations-section .movie-recommendations-container .recommendations-movie-card {
+  color: white;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card {
+    max-width: 200px;
+  }
+}
+.movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-poster {
+  height: 250px;
+  width: 200px;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-poster {
+    width: 150px;
+    height: 200px;
+  }
+}
+.movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-poster img {
+  height: 250px;
+  width: 200px;
+  border-radius: 15px;
+  border: 2px solid white;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-poster img {
+    width: 150px;
+    height: 200px;
+  }
+}
+.movie-recommendations-section .movie-recommendations-container .recommendations-movie-card h6 {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card h6 {
+    font-size: 14px;
+  }
+}
+.movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+.movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-date p {
+  font-size: 14px;
+  font-weight: 500;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-date p {
+    font-size: 12px;
+  }
+}
+.movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-date .recommendations-movie-vote {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-date .recommendations-movie-vote .star {
+    height: 14px;
+  }
+}
+.movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-date .recommendations-movie-vote span {
+  font-size: 14px;
+  font-weight: 500;
+}
+@media screen and (max-width: 600px) {
+  .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-date .recommendations-movie-vote span {
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=movie-recommendations.css.map */

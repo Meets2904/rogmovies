@@ -44,7 +44,7 @@ const WatchListPage = () => {
     }
 
     const { data: watchlistData } = useQuery({
-        queryKey: ['watchlistData', timeFrame],
+        queryKey: ['watchlistData', timeFrame, ],
         queryFn: fetchWatchlistData,
     })
 

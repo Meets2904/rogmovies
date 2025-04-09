@@ -1,0 +1,107 @@
+@import '../colors/colors';
+@import '../fonts/fonts';
+@import '../media-quaries';
+
+
+.movie-recommendations-section{
+    display: flex;
+    flex-direction: column;
+
+    .movie-recommendations-heading{
+        color: $white;
+        font-family: $font_oswald;
+        margin-top: 30px;
+        border-bottom: 1px solid grey;
+        @include breakpoint1 {
+            margin-top: 10px;
+            padding: 5px;
+        }
+
+        h3{
+            font-size: 25px;
+            font-weight: 500;
+            @include breakpoint1{
+                font-size: 18px;
+            }
+        }
+        
+    }
+
+
+    .movie-recommendations-container{
+        margin: 10px 10px;
+    
+        .recommendations-movie-card {
+            color: $white;
+            font-family: $font_oswald;
+            display: flex;
+            flex-direction: column;
+            max-width: 250px;
+            @include breakpoint1{
+                max-width: 200px;
+            }
+        
+            .recommendations-movie-poster {
+                height: 250px;
+                width: 200px;
+                @include breakpoint1{
+                    width: 150px;
+                    height: 200px;
+                }
+                img{
+                    height: 250px;
+                    width: 200px;
+                    border-radius: 15px;
+                    border: 2px solid white;
+                    @include breakpoint1{
+                        width: 150px;
+                        height: 200px;
+                    }
+                }
+            }
+        
+            h6{
+                font-size: 16px;
+                font-weight: 500;
+                padding: 5px;
+                @include breakpoint1{
+                    font-size: 14px;
+                }
+            }
+        
+            .recommendations-movie-date{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px;
+        
+                p{
+                    font-size: 14px;
+                    font-weight: 500;
+                    @include breakpoint1{
+                        font-size: 12px;
+                    }
+                }
+        
+                .recommendations-movie-vote{
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    .star{
+                        @include breakpoint1{
+                            height: 14px;
+                        }
+                    }
+        
+                    span{
+                        font-size: 14px;
+                        font-weight: 500;
+                        @include breakpoint1{
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
