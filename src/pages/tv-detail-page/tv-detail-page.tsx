@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react'
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../../axios/axios-instance';
 import '../../styles/movie-detail-page/movie-detail-page.css'
@@ -8,6 +7,7 @@ import { EmblaOptionsType } from 'embla-carousel';
 import MovieVideos from '../../components/movie-videos/movie-videos';
 import MovieReviews from '../../components/movie-reviews/movie-reviews';
 import MovieRecommendations from '../../components/movie-recommendations/movie-recommendations';
+import AddWatchlistBtn from '../../components/ui/add-to-watchlist-btn/add-to-watchlist-btn';
 
 // Movie Credits Slider
 const movie_cast_options: EmblaOptionsType = { dragFree: true }
@@ -61,7 +61,7 @@ const TvDetailPge = () => {
                             <p key={index}>{genre?.name}</p>
                         ))}</div>
                         <p className='movie-overview-detail'>{tvDetailsData?.overview}</p>
-                        <button className='add-to-watchlist-btn'>Add To Watchlist</button>
+                        <AddWatchlistBtn tvshowID={params?.tvshowID}/>
                     </div>
                 </div>
 

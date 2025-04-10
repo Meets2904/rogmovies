@@ -10,8 +10,8 @@ import LoginPage from './pages/login-page/login-page.tsx';
 import HomePage from './pages/home-page/home-page.tsx';
 import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
 import WatchListPage from './pages/watchlist-page/watchlist-page.tsx';
-import UpcomingMoviesPage from './pages/upcoming-movies-page/upcoming-movies-page.tsx';
-import TopRatedTvPage from './pages/top-rated-tv-series-page/top-rated-tv-page.tsx';
+import MoviesPage from './pages/movies-page/movies-page.tsx';
+import TvSeriesPage from './pages/tv-series-page/tv-series-page.tsx';
 import MovieDetailPage from './pages/movie-detail-page/movie-detail-page.tsx';
 import TvDetailPge from './pages/tv-detail-page/tv-detail-page.tsx';
 
@@ -41,12 +41,36 @@ const router = createBrowserRouter([
         element: <WatchListPage />,
       },
       {
-        path: '/upcoming-movies-page',
-        element: <UpcomingMoviesPage />,
+        path: 'movie/upcoming',
+        element: <MoviesPage />,
       },
       {
-        path: '/top-rated-tv-series',
-        element: <TopRatedTvPage />
+        path: 'movie/now_playing',
+        element: <MoviesPage/>
+      },
+      {
+        path: '/movie/popular',
+        element: <MoviesPage/>
+      },
+      {
+        path: '/movie/top_rated',
+        element: <MoviesPage/>
+      },
+      {
+        path: '/tv/airing_today',
+        element: <TvSeriesPage />
+      },
+      {
+        path: '/tv/on_the_air',
+        element: <TvSeriesPage />
+      },
+      {
+        path: '/tv/popular',
+        element: <TvSeriesPage />
+      },
+      {
+        path: 'tv/top_rated',
+        element: <TvSeriesPage />
       },
       {
         path: '/movie/detail/:movieID',

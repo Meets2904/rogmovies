@@ -5,6 +5,7 @@ import { Star } from 'lucide-react'
 import '../../styles/top-rated-tv-slider/top-rated-tv-slider.css'
 import { useQuery } from '@tanstack/react-query'
 import { NavLink } from 'react-router-dom'
+import MovieSkeletonCard from '../ui/movie-skeleton-card/movie-skeleton-card'
 
 
 type PropType = {
@@ -27,6 +28,7 @@ const TopRatedTvSlider = (props: PropType) => {
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300
 
     const fetchTopRatedTvDetails = async () => {
+        
         try {
             const response = await axiosInstance.get(`tv/top_rated?language=en-US&page=1&api_key=${api_key}`)
             console.log("Top Rated Tv Data", response?.data.results)
@@ -38,7 +40,7 @@ const TopRatedTvSlider = (props: PropType) => {
     }
 
     
-    const { data } = useQuery({
+    const { isLoading, data } = useQuery({
         queryKey: ['topRatedTvData'], 
         queryFn: fetchTopRatedTvDetails 
     });
@@ -47,10 +49,11 @@ const TopRatedTvSlider = (props: PropType) => {
         <section className='top-rated-tv-slider-section container'>
             <div className='top-rated-tv-heading'>
                 <h3>Top Rated TV Series</h3>
-                <NavLink to='/top-rated-tv-series' className='see-all-link'><p>See All</p></NavLink>
+                <NavLink to='tv/top_rated' className='see-all-link'><p>See All</p></NavLink>
             </div>
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
+                {isLoading && <MovieSkeletonCard length={20}/>}
                     {data?.map((movie: TopRatedTvData, index: number) => (
                         <div className='embla_slide movie-card-container' key={index}>
                             <div className='embla_slide_number upcoming-movie-card'>

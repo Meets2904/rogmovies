@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 type WatchlistData = {
     poster_path: string,
+    backdrop_path: string,
     id: number,
     original_title: string,
     overview: string,
@@ -20,6 +21,7 @@ const WatchListPage = () => {
     const session_id = localStorage.getItem('sessionId');
     const api_key = localStorage.getItem('api_key')
     const image_url_200 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_200;
+    const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
 
     const fetchWatchlistData = async () => {
         if (timeFrame == 'movies') {
@@ -27,6 +29,7 @@ const WatchListPage = () => {
                 const response = await axiosInstance.get(`account/null/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc&session_id=${session_id}&api_key=${api_key}`)
                 console.log("Watchlist Movies", response?.data.results)
                 const data = response?.data.results;
+                // const data = response?.data.results.slice(1);
                 return data;
             } catch (error) {
                 console.log(error)
@@ -44,10 +47,11 @@ const WatchListPage = () => {
     }
 
     const { data: watchlistData } = useQuery({
-        queryKey: ['watchlistData', timeFrame, ],
+        queryKey: ['watchlistData', timeFrame,],
         queryFn: fetchWatchlistData,
     })
 
+    // const finalData = watchlistData?.slice(1)
 
     return (
         <section className='watchlist-page-section container'>
@@ -63,14 +67,18 @@ const WatchListPage = () => {
                 {watchlistData?.map((item: WatchlistData, index: number) => (
                     <div className='watchlist-card' key={index}>
                         <div className='watchlist-item-poster'>
-                            <img src={`${image_url_200}${item?.poster_path}`} alt="" />
+                            {item?.poster_path ? <img src={`${image_url_200}${item?.poster_path}`} alt="" /> : <img src={`${image_url_300}${item?.backdrop_path}`} alt="" />}
                         </div>
                         <div className='watchlist-item-details'>
-                            <h6>Id:- <span>{item?.id}</span></h6>
-                            <h5>Name: {item?.original_title ? <span>{item?.original_title}</span> : <span>{item?.original_name}</span>}</h5>
-                            <p>Overview:- <span>{item?.overview}</span></p>
-                            <p>Release date:- {item?.release_date ? <span>{item?.release_date}</span> : <span>{item?.first_air_date}</span>} </p>
-                            <p>Total Rating:- <span>{item?.vote_count}</span></p>
+                            {item?.id && <h6>Id:- <span>{item?.id}</span></h6>}
+                            {(item?.original_title || item?.original_name) && (
+                                <h5>Name:- <span>{item?.original_title || item?.original_name}</span></h5>
+                            )}
+                            {item?.overview && <p>Overview:- <span>{item?.overview}</span></p>}
+                            {(item?.release_date || item?.first_air_date) && (
+                                <p>Release date:- <span>{item?.release_date || item?.first_air_date}</span></p>
+                            )}
+                            {item?.vote_count && <p>Total Rating:- <span>{item?.vote_count}</span></p>}
                         </div>
                     </div>
                 ))}

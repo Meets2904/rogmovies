@@ -37,13 +37,15 @@ const ProfilePage = () => {
       console.log(error)
     }
   }
-
+  
   const { data: user } = useQuery({
     queryKey: ['userAccountDetails'],
     queryFn: fetchUserDetails,
   })
-
+  
   console.log(user)
+  const userID : number = user?.userID as number
+  localStorage.setItem('userID', String(userID));
 
   return (
     <section className='profile-section-container container'>

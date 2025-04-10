@@ -5,6 +5,7 @@ import axiosInstance from '../../axios/axios-instance';
 import { Star } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { NavLink } from 'react-router-dom';
+import MovieSkeletonCard from '../ui/movie-skeleton-card/movie-skeleton-card';
 
 type PropType = {
     slides: number[]
@@ -27,6 +28,8 @@ const UpcomingMoviesSlider = (props: PropType) => {
     const api_key = import.meta.env.VITE_API_KEY;
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300
 
+    
+
     const fetchMovies = async() => {
         try {
             const response = await axiosInstance.get(`movie/upcoming?language=en-US&page=1&api_key=${api_key}`)
@@ -47,10 +50,11 @@ const UpcomingMoviesSlider = (props: PropType) => {
         <section className='upcoming-movies-section container'>
             <div className='upcoming-movies-heading'>
                 <h3>Upcoming Movies</h3>
-                <NavLink to='upcoming-movies-page' className='see-all-link'><p>See All</p></NavLink>
+                <NavLink to='movie/upcoming' className='see-all-link'><p>See All</p></NavLink>
             </div>
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
+                    {isLoading && <MovieSkeletonCard length={20}/>}
                     {moviesData?.map((movie: UpcomingMovieData, index: number) => (
                         <div className='embla_slide movie-card-container' key={index}>
                             <div className='embla_slide_number upcoming-movie-card'>

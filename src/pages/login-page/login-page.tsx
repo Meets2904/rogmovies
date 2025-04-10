@@ -2,8 +2,6 @@ import '../../styles/login-page/login-page.css'
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import axiosInstance from '../../axios/axios-instance';
 
 const schema = z.object({
@@ -15,9 +13,6 @@ const LoginPage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(schema),
     });
-
-    const navigate = useNavigate();
-    const [isLogin, setLogin] = useState(false);
 
     const onSubmit = (data: any) => {
         console.log('Submitting data:', data);

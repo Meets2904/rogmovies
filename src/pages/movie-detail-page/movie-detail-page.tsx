@@ -63,7 +63,7 @@ const MovieDetailPage = () => {
                         ))}</div>
                         <p className='movie-overview-detail'>{movieData?.overview}</p>
                         {/* <button className='add-to-watchlist-btn'>Add To Watchlist</button> */}
-                        <AddWatchlistBtn />
+                        <AddWatchlistBtn movieID={params?.movieID}/>
                     </div>
                 </div>
 

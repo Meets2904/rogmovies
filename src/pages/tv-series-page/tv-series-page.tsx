@@ -1,29 +1,34 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import '../../styles/top-rated-tv-series-page/top-rated-tv-page.css';
+import '../../styles/tv-series-page/tv-series-page.css';
 import axiosInstance from '../../axios/axios-instance';
 import { Star } from 'lucide-react';
 import { useEffect, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 
 
-type TopRatedTvSeriesData = {
+type TvSeriesData = {
+  id: number;
   poster_path: string,
   original_name: string,
   first_air_date: string | number,
   vote_average: number,
 }
 
-const TopRatedTvPage = () => {
+const TvSeriesPage = () => {
   const api_key = import.meta.env.VITE_API_KEY;
   const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300
 
   const fetchTopRatedTvData = async ({ pageParam = 1 }: any) => {
-    const response = await axiosInstance.get(`tv/top_rated?language=en-US&page=${pageParam}&api_key=${api_key}`);
+    const { pathname } = location;
+    const response = await axiosInstance.get(`${pathname}?language=en-US&page=${pageParam}&api_key=${api_key}`);
     console.log(response?.data)
     return response?.data
   }
 
+  const { pathname } = location;
+
   const { data: tvData, error, fetchNextPage, hasNextPage, isError, isLoading } = useInfiniteQuery({
-    queryKey: ['topRatedTVPageData'],
+    queryKey: ['tvSeriesPageData', pathname],
     queryFn: fetchTopRatedTvData,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -70,15 +75,18 @@ const TopRatedTvPage = () => {
     <section className='top-rated-tv-page container'>
 
       <div className='top-rated-tv-page-heading'>
-        <p>Top-Rated Tv Series</p>
+        {pathname == '/tv/airing_today' && <p>Airing Today Tv Series</p>}
+        {pathname == '/tv/on_the_air' && <p>On The Air Tv Series</p>}
+        {pathname == '/tv/popular' && <p>Popular Tv Series</p>}
+        {pathname == '/tv/top_rated' && <p>Top-Rated Tv Series</p>}
       </div>
 
       <div className='all-top-rated-tv-container'>
         {tvData?.pages.map((page, index) => (
           <div key={index} className='top-rated-each-tv-page'>
-            {page?.results.map((tv: TopRatedTvSeriesData, index: number) => (
+            {page?.results.map((tv: TvSeriesData, index: number) => (
               <div key={index} className='top-rated-tv-card'>
-                <div className='top-rated-tv-card-poster'><img src={`${image_url_300}${tv?.poster_path}`} alt="" /></div>
+                <div className='top-rated-tv-card-poster'><NavLink to={`/tv-show/detail/${tv?.id}`}><img src={`${image_url_300}${tv?.poster_path}`} alt="" /></NavLink></div>
                 <h6>{tv?.original_name}</h6>
                 <div className='top-rated-tv-date-page'>
                   <p>{tv?.first_air_date}</p>
@@ -97,4 +105,4 @@ const TopRatedTvPage = () => {
   )
 }
 
-export default TopRatedTvPage;
+export default TvSeriesPage;

@@ -6,6 +6,7 @@ import axiosInstance from '../../axios/axios-instance'
 import { Star } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { NavLink } from 'react-router-dom'
+import MovieSkeletonCard from '../ui/movie-skeleton-card/movie-skeleton-card'
 
 type PropType = {
   slides: number[]
@@ -67,6 +68,7 @@ const TrendingEmblaSlider = (props: PropType) => {
 
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
+          {isLoading && <MovieSkeletonCard length={20}/>}
           {trendingData?.map((movie: TrendingMovieData, index: number) => (
             <div className='embla_slide movie-card-container' key={index}>
               <div className='embla_slide_number upcoming-movie-card'>

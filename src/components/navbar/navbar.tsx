@@ -4,10 +4,29 @@ import '../../styles/navbar/navbar.css';
 import nav_logo from '../../../src/assets/images/navbar/nav-logo.png'
 import { ChevronDown, Heart, SquareUser } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import MovieDropdownMenu from '../ui/movie-dropdown-menu/movie-drodown-menu';
+import { useState } from 'react';
+import TvDropdownMenu from '../ui/tv-dropdown-menu/tv-dropdown-menu';
 
 const Navbar = () => {
 
     // const request_token = localStorage.getItem("request_token")
+    const [isMovieVisible, setIsMovieVisible] = useState(false);
+    const [isTvVisible, setIsTvVisible] = useState(false);
+
+    const toggleMovieVisibility= () => {
+        setIsMovieVisible(!isMovieVisible);
+        if(isTvVisible){
+            setIsTvVisible(!isTvVisible);
+        }
+    }
+
+    const toggleTvVisibility= () => {
+        setIsTvVisible(!isTvVisible);
+        if (isMovieVisible) {
+            setIsMovieVisible(!isMovieVisible);
+        }
+    }
 
     return (
         <nav className='nav-bar container'>
@@ -15,19 +34,19 @@ const Navbar = () => {
                 <NavLink to='/' className='nav-logo-container'>
                     <div className='nav-logo'>
                         <img src={nav_logo} alt="" />
-                        <p>Movies App</p>
+                        <p>Rog Movies</p>
                     </div>
                 </NavLink>
 
-                <div className='movies-tab-container'>
+                <div className='movies-tab-container' onClick={toggleMovieVisibility}>
                     {/* <NavLink to='/'> */}
-                    <h6>Movies <span><ChevronDown className='arrow-down' /></span></h6>
+                    <h6>Movies <span><ChevronDown className={`arrow-down ${isMovieVisible == true ? 'rotate-arrow': ''}`} /><MovieDropdownMenu isVisible={isMovieVisible}/></span></h6>
                     {/* </NavLink> */}
                 </div>
 
-                <div className='tv-shows-container'>
+                <div className='tv-shows-container' onClick={toggleTvVisibility}>
                     {/* <NavLink to='/'> */}
-                    <h6>TV Shows <span><ChevronDown className='arrow-down' /></span></h6>
+                    <h6>TV Shows <span><ChevronDown className={`arrow-down ${isTvVisible == true ? 'rotate-arrow': ''}`} /><TvDropdownMenu isVisible={isTvVisible}/></span></h6>
                     {/* </NavLink> */}
                 </div>
             </div>

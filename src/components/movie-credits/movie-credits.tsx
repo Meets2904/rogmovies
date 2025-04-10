@@ -19,25 +19,25 @@ type CastData = {
 }
 
 
-const MovieCredits = (props: PropType) => {
+const MovieCredits = ({options, movieID, slides,tvshowID}: PropType) => {
 
-    const { options } = props
+    // const { options } = props
     const [emblaRef] = useEmblaCarousel(options)
     const api_key = import.meta.env.VITE_API_KEY;
     const image_url_200 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_200
 
 
     const fetchMovieCredits = async () => {
-        if (props?.movieID) {
+        if (movieID) {
             try {
-                const response = await axiosInstance.get(`movie/${props?.movieID}/credits?language=en-US&api_key=${api_key}`)
+                const response = await axiosInstance.get(`movie/${movieID}/credits?language=en-US&api_key=${api_key}`)
                 return response?.data.cast
             } catch (error) {
                 console.log(error)
             }
-        } else if (props?.tvshowID){
+        } else if (tvshowID){
             try {
-                const response = await axiosInstance.get(`tv/${props?.tvshowID}/credits?language=en-US&api_key=${api_key}`)
+                const response = await axiosInstance.get(`tv/${tvshowID}/credits?language=en-US&api_key=${api_key}`)
                 return response?.data.cast
             } catch (error) {
                 console.log(error)
@@ -46,7 +46,7 @@ const MovieCredits = (props: PropType) => {
     }
 
     const { data: castData } = useQuery({
-        queryKey: ['movieCredits', props?.movieID, props?.tvshowID],
+        queryKey: ['movieCredits', movieID, tvshowID],
         queryFn: fetchMovieCredits,
     })
 

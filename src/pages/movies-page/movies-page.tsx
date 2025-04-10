@@ -1,29 +1,35 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import '../../styles/upcoming-movies-page/upcoming-movies-page.css';
+import '../../styles/movies-page/movies-page.css';
 import { useEffect, useRef } from 'react';
 import axiosInstance from '../../axios/axios-instance';
 import { Star } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import MoviePageSkeletonCard from '../../components/ui/movie-page-skeleton-card/movie-page-skeleton-card';
 
 
-type UpComingMoviesData = {
+type MoviesPageData = {
+  id: number;
   poster_path: string,
   title: string,
   release_date: string | number,
   vote_average: number,
 }
 
-const UpcomingMoviesPage = () => {
+const MoviesPage = () => {
   const api_key = import.meta.env.VITE_API_KEY;
   const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
 
+  
   const fetchUpcomingMoviesData = async ({ pageParam = 1 }: any) => {
+    const { pathname } = location;
     const response = await axiosInstance.get(
-      `movie/upcoming?language=en-US&page=${pageParam}&api_key=${api_key}`
+      `${pathname}?language=en-US&page=${pageParam}&api_key=${api_key}`
     );
     console.log(response?.data);
     return response?.data;
   };
 
+  const { pathname } = location;
 
   const {
     data: moviesData,
@@ -33,7 +39,7 @@ const UpcomingMoviesPage = () => {
     isError,
     isLoading,
   } = useInfiniteQuery({
-    queryKey: ['upcomingMoviesPageData'],
+    queryKey: ['MoviesPageData', pathname],
     queryFn: fetchUpcomingMoviesData,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -77,22 +83,26 @@ const UpcomingMoviesPage = () => {
   }
 
   return (
-    <section className='upcoming-movies-page container'>
+    <section className='movies-page container'>
 
-      <div className='upcoming-mvies-page-heading'>
-        <p>Up-Coming Movies</p>
+      <div className='movies-page-heading'>
+        {pathname == '/movie/now_playing' && <p>Now Playing Movies</p>}
+        {pathname == '/movie/popular' && <p>Popular Movies</p>}
+        {pathname == '/movie/top_rated' && <p>Top Rated Movies</p>}
+        {pathname == '/movie/upcoming' && <p>Up-Coming Movies</p>}
       </div>
 
-      <div className='all-upcoming-movies-container'>
+      <div className='movies-container'>
+        {/* <MoviePageSkeletonCard length={50}/> */}
         {moviesData?.pages.map((page, index) => (
-          <div key={index} className='upcoming-each-movie-page'>
-            {page?.results.map((movie: UpComingMoviesData, index: number) => (
-              <div key={index} className='upcoming-movies-card'>
-                <div className='upcoming-movie-card-poster'><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></div>
+          <div key={index} className='each-movie-page'>
+            {page?.results.map((movie: MoviesPageData, index: number) => (
+              <div key={index} className='movies-card'>
+                <div className='movie-card-poster'><NavLink to={`/movie/detail/${movie?.id}`}><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></NavLink></div>
                 <h6>{movie?.title}</h6>
-                <div className='upcoming-movie-date-page'>
+                <div className='movie-date-page'>
                   <p>{movie?.release_date}</p>
-                  <div className='upcoming-movie-vote'><Star size={18} fill='orange' color='orange' /><span>{(movie?.vote_average).toFixed(2)}</span></div>
+                  <div className='movie-vote'><Star size={18} fill='orange' color='orange' /><span>{(movie?.vote_average).toFixed(2)}</span></div>
                 </div>
               </div>
             ))}
@@ -107,5 +117,5 @@ const UpcomingMoviesPage = () => {
   );
 };
 
-export default UpcomingMoviesPage;
+export default MoviesPage;
 
