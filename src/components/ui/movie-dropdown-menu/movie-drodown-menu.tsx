@@ -3,6 +3,7 @@ import '../../../styles/navbar/navbar.css'
 
 type ProtoType = {
     isVisible: boolean
+    ref?: any
 }
 
 const MovieDropdownMenu = (props: ProtoType) => {

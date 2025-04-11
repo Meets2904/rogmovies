@@ -71,6 +71,7 @@
             .upcoming-movie-poster {
                 height: 250px;
                 width: 200px;
+                position: relative;
                 @include breakpoint1{
                     width: 150px;
                     height: 200px;

@@ -61,6 +61,7 @@
 .upcoming-movies-section .movie-card-container .upcoming-movie-card .upcoming-movie-poster {
   height: 250px;
   width: 200px;
+  position: relative;
 }
 @media screen and (max-width: 600px) {
   .upcoming-movies-section .movie-card-container .upcoming-movie-card .upcoming-movie-poster {

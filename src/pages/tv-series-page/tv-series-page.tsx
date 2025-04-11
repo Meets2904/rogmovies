@@ -2,8 +2,10 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import '../../styles/tv-series-page/tv-series-page.css';
 import axiosInstance from '../../axios/axios-instance';
 import { Star } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import MoviePageSkeletonCard from '../../components/ui/movie-page-skeleton-card/movie-page-skeleton-card';
+import { CircularProgress } from '@mui/material';
 
 
 type TvSeriesData = {
@@ -15,6 +17,7 @@ type TvSeriesData = {
 }
 
 const TvSeriesPage = () => {
+  const [imageLoading, setImageLoading] = useState(true)
   const api_key = import.meta.env.VITE_API_KEY;
   const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300
 
@@ -27,7 +30,7 @@ const TvSeriesPage = () => {
 
   const { pathname } = location;
 
-  const { data: tvData, error, fetchNextPage, hasNextPage, isError, isLoading } = useInfiniteQuery({
+  const { data: tvData, fetchNextPage, hasNextPage, isError, isLoading } = useInfiniteQuery({
     queryKey: ['tvSeriesPageData', pathname],
     queryFn: fetchTopRatedTvData,
     initialPageParam: 1,
@@ -37,38 +40,40 @@ const TvSeriesPage = () => {
   })
 
   // Ref for the "loader" div that will trigger fetching more data
-    const loaderRef = useRef(null);
-  
-    // IntersectionObserver to load more data when reaching the bottom of the page
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting && hasNextPage) {
-            fetchNextPage(); // Fetch next page when the loader is in view
-          }
-        },
-        {
-          rootMargin: '100px', // Trigger when 100px from the bottom
-        }
-      );
-  
-      if (loaderRef.current) {
-        observer.observe(loaderRef.current); // Observe the loader
-      }
-  
-      return () => {
-        if (loaderRef.current) {
-          observer.unobserve(loaderRef.current); // Clean up observer
-        }
-      };
-    }, [fetchNextPage, hasNextPage]);
+  const loaderRef = useRef(null);
 
-  if (isLoading) {
-    return <div><p style={{color: 'white'}}>Loading...</p></div>;
+  // IntersectionObserver to load more data when reaching the bottom of the page
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage(); // Fetch next page when the loader is in view
+        }
+      },
+      {
+        rootMargin: '100px', // Trigger when 100px from the bottom
+      }
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current); // Observe the loader
+    }
+
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current); // Clean up observer
+      }
+    };
+  }, [fetchNextPage, hasNextPage]);
+
+
+
+  const handleImageLoad = () => {
+    setImageLoading(false)
   }
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
+  const handleImageError = () => {
+    setImageLoading(false)
   }
 
   return (
@@ -81,12 +86,17 @@ const TvSeriesPage = () => {
         {pathname == '/tv/top_rated' && <p>Top-Rated Tv Series</p>}
       </div>
 
+      {isError && <div style={{color: 'white', fontSize: '25px'}}>Currently Data Is Not Available</div>}
       <div className='all-top-rated-tv-container'>
         {tvData?.pages.map((page, index) => (
           <div key={index} className='top-rated-each-tv-page'>
+            {isLoading && <MoviePageSkeletonCard length={page?.results.length} />}
             {page?.results.map((tv: TvSeriesData, index: number) => (
               <div key={index} className='top-rated-tv-card'>
-                <div className='top-rated-tv-card-poster'><NavLink to={`/tv-show/detail/${tv?.id}`}><img src={`${image_url_300}${tv?.poster_path}`} alt="" /></NavLink></div>
+                <div className='top-rated-tv-card-poster'><NavLink to={`/tv-show/detail/${tv?.id}`}>
+                  {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
+                  <img src={`${image_url_300}${tv?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" />
+                </NavLink></div>
                 <h6>{tv?.original_name}</h6>
                 <div className='top-rated-tv-date-page'>
                   <p>{tv?.first_air_date}</p>

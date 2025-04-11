@@ -3,6 +3,9 @@
   color: white;
   font-family: "Oswald", sans-serif;
 }
+.movie-details-section .movie-background-poster {
+  position: relative;
+}
 .movie-details-section .movie-background-poster img {
   max-width: 1920px;
   max-height: 800px;
@@ -24,6 +27,7 @@
   height: 350px;
   width: 300px;
   border-radius: 20px;
+  position: relative;
 }
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster img {
   height: 350px;

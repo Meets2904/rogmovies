@@ -1,0 +1,16 @@
+.movie-video-skeleton-container {
+
+    .movie-video-skeleton {
+        height: 320px;
+        width: 700px;
+
+        .movie-video-skeleton-box {
+            height: 320px;
+            width: 600px;
+            background-color: rgba(255, 255, 255, 0.356);
+            border-radius: 25px;
+            margin: 10px 25px 25px;
+        }
+
+    }
+}

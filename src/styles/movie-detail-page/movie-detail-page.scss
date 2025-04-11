@@ -8,6 +8,7 @@
     font-family: $font_oswald;
 
     .movie-background-poster {
+        position: relative;
 
         img {
             max-width: 1920px;
@@ -31,6 +32,7 @@
                 height: 350px;
                 width: 300px;
                 border-radius: 20px;
+                position: relative;
 
                 img {
                     height: 350px;

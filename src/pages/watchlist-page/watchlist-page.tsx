@@ -2,6 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import '../../styles/watchlist-page/watchlist-page.css'
 import axiosInstance from '../../axios/axios-instance';
 import { useState } from 'react';
+import MovieTvDetailSkeleton from '../../components/ui/movie-tv-detail-skeleton/movie-tv-detail-skeleton';
+import { CircularProgress } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 type WatchlistData = {
     poster_path: string,
@@ -18,6 +21,7 @@ type WatchlistData = {
 const WatchListPage = () => {
 
     const [timeFrame, setTimeFrame] = useState('movies');
+    const [imageLoading, setImageLoading] = useState(true)
     const session_id = localStorage.getItem('sessionId');
     const api_key = localStorage.getItem('api_key')
     const image_url_200 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_200;
@@ -29,7 +33,6 @@ const WatchListPage = () => {
                 const response = await axiosInstance.get(`account/null/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc&session_id=${session_id}&api_key=${api_key}`)
                 console.log("Watchlist Movies", response?.data.results)
                 const data = response?.data.results;
-                // const data = response?.data.results.slice(1);
                 return data;
             } catch (error) {
                 console.log(error)
@@ -46,12 +49,21 @@ const WatchListPage = () => {
         }
     }
 
-    const { data: watchlistData } = useQuery({
+    const { data: watchlistData, isLoading, isError } = useQuery({
         queryKey: ['watchlistData', timeFrame,],
         queryFn: fetchWatchlistData,
     })
 
-    // const finalData = watchlistData?.slice(1)
+
+    const handleImageLoad = () => {
+        setImageLoading(false)
+    }
+
+    const handleImageError = () => {
+        setImageLoading(false)
+    }
+
+    const length = watchlistData?.length;
 
     return (
         <section className='watchlist-page-section container'>
@@ -63,11 +75,17 @@ const WatchListPage = () => {
                 </div>
             </div>
 
-            {watchlistData?.length == 0 ? <p style={{ fontSize: '30px', display: 'flex', gap: '10px' }}>You Have Nothing To Watch Later! <img style={{ height: '50px', width: '50px' }} src="../../../src/assets/images/sad_emoji.png" alt="" /></p> : <div className='watchlist-card-container'>
+            {isError && <div style={{color: 'white', fontSize: '25px'}}>Currently Data Is Not Available</div>}
+            {isLoading && <MovieTvDetailSkeleton length={length}/>}
+            {watchlistData?.length == 0 ? <p style={{ fontSize: '30px', display: 'flex', gap: '10px' }}>You Have Nothing To Watch Later! <img style={{ height: '50px', width: '50px' }} src="../../../src/assets/images/sad_emoji.png" alt="" /></p> : 
+            <div className='watchlist-card-container'>
                 {watchlistData?.map((item: WatchlistData, index: number) => (
                     <div className='watchlist-card' key={index}>
                         <div className='watchlist-item-poster'>
-                            {item?.poster_path ? <img src={`${image_url_200}${item?.poster_path}`} alt="" /> : <img src={`${image_url_300}${item?.backdrop_path}`} alt="" />}
+                            {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
+                            {item?.poster_path 
+                            ? <NavLink to={`${timeFrame == 'movies' ? `/movie/detail/${item?.id}`: `/tv-show/detail/${item?.id}`}`}><img src={`${image_url_200}${item?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></NavLink> 
+                            : <NavLink to={`${timeFrame == 'movies' ? `/movie/detail/${item?.id}`: `/tv-show/detail/${item?.id}`}`}><img src={`${image_url_300}${item?.backdrop_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></NavLink>}
                         </div>
                         <div className='watchlist-item-details'>
                             {item?.id && <h6>Id:- <span>{item?.id}</span></h6>}

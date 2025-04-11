@@ -1,10 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import '../../styles/movies-page/movies-page.css';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axiosInstance from '../../axios/axios-instance';
 import { Star } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import MoviePageSkeletonCard from '../../components/ui/movie-page-skeleton-card/movie-page-skeleton-card';
+import { CircularProgress } from '@mui/material';
 
 
 type MoviesPageData = {
@@ -16,10 +17,11 @@ type MoviesPageData = {
 }
 
 const MoviesPage = () => {
+  const [imageLoading, setImageLoading] = useState(true)
   const api_key = import.meta.env.VITE_API_KEY;
   const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
 
-  
+
   const fetchUpcomingMoviesData = async ({ pageParam = 1 }: any) => {
     const { pathname } = location;
     const response = await axiosInstance.get(
@@ -33,7 +35,6 @@ const MoviesPage = () => {
 
   const {
     data: moviesData,
-    error,
     fetchNextPage,
     hasNextPage,
     isError,
@@ -74,14 +75,14 @@ const MoviesPage = () => {
     };
   }, [fetchNextPage, hasNextPage]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+
+  const handleImageLoad = () => {
+    setImageLoading(false)
   }
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
+  const handleImageError = () => {
+    setImageLoading(false)
   }
-
   return (
     <section className='movies-page container'>
 
@@ -92,13 +93,17 @@ const MoviesPage = () => {
         {pathname == '/movie/upcoming' && <p>Up-Coming Movies</p>}
       </div>
 
+      {isError && <div style={{ color: 'white', fontSize: '25px' }}>Currently Data Is Not Available</div>}
       <div className='movies-container'>
-        {/* <MoviePageSkeletonCard length={50}/> */}
         {moviesData?.pages.map((page, index) => (
           <div key={index} className='each-movie-page'>
+            {isLoading && <MoviePageSkeletonCard length={page?.results.length} />}
             {page?.results.map((movie: MoviesPageData, index: number) => (
-              <div key={index} className='movies-card'>
-                <div className='movie-card-poster'><NavLink to={`/movie/detail/${movie?.id}`}><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></NavLink></div>
+              movie?.poster_path && <div key={index} className='movies-card'>
+                <div className='movie-card-poster'><NavLink to={`/movie/detail/${movie?.id}`}>
+                  {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
+                  <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt={movie?.title} />
+                </NavLink></div>
                 <h6>{movie?.title}</h6>
                 <div className='movie-date-page'>
                   <p>{movie?.release_date}</p>

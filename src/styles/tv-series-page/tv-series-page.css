@@ -31,6 +31,7 @@
   width: 300px;
   height: 350px;
   border-radius: 15px;
+  position: relative;
 }
 .top-rated-tv-page .all-top-rated-tv-container .top-rated-each-tv-page .top-rated-tv-card .top-rated-tv-card-poster img {
   width: 300px;

@@ -17,7 +17,7 @@ body{
 .container{
     max-width: 1400px;
     margin: 0 auto;
-
+    
     @include breakpoint1 {
         margin: 0 20px;
     }

@@ -3,6 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import '../../styles/profile-page/profile-page.css';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axios/axios-instance';
+import ProfileSkeleton from '../../components/ui/profile-skeleton/profile-skeleton';
+import { useState } from 'react';
+import { CircularProgress } from '@mui/material';
 
 type UserData = {
   username: string | number;
@@ -13,6 +16,7 @@ type UserData = {
 
 const ProfilePage = () => {
 
+  const [imageLoading, setImageLoading] = useState(true)
   const navigate = useNavigate();
 
   const handleLogOut = () => {
@@ -37,24 +41,36 @@ const ProfilePage = () => {
       console.log(error)
     }
   }
-  
-  const { data: user } = useQuery({
+
+  const { data: user, isLoading } = useQuery({
     queryKey: ['userAccountDetails'],
     queryFn: fetchUserDetails,
   })
-  
+
   console.log(user)
-  const userID : number = user?.userID as number
+  const userID: number = user?.userID as number
   localStorage.setItem('userID', String(userID));
+
+  const handleImageLoad = () => {
+    setImageLoading(false)
+  }
+
+  const handleImageError = () => {
+    setImageLoading(false)
+  }
 
   return (
     <section className='profile-section-container container'>
+      {isLoading && <ProfileSkeleton />}
       <div className='profile-card'>
-        <div className='profile-avatar'><img src="../../../src/assets/images/avatar.jpg" alt="" /></div>
-        <h6>Username:- <span>{user?.username}</span></h6>
-        <h6>UserID:- <span>{user?.userID}</span></h6>
-        <h6>Name:- <span>{user?.name}</span></h6>
-        <button className='log-out-btn' onClick={handleLogOut}>LogOut</button>
+        <div className='profile-avatar'>
+          {imageLoading && <div style={{ position: 'absolute', top: "40%", right: "40%" }}><CircularProgress /></div>}
+          <img src="../../../src/assets/images/avatar.jpg" onLoad={handleImageLoad} onError={handleImageError} alt="" />
+        </div>
+        {!isLoading && <h6>Username:- <span>{user?.username}</span></h6>}
+        {!isLoading && <h6>UserID:- <span>{user?.userID}</span></h6>}
+        {!isLoading && <h6>Name:- <span>{user?.name}</span></h6>}
+        {!isLoading && <button className='log-out-btn' onClick={handleLogOut}>LogOut</button>}
       </div>
     </section>
   )

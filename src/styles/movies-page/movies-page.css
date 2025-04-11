@@ -31,6 +31,7 @@
   width: 300px;
   height: 350px;
   border-radius: 15px;
+  position: relative;
 }
 .movies-page .movies-container .each-movie-page .movies-card .movie-card-poster img {
   width: 300px;

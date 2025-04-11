@@ -23,6 +23,7 @@
   overflow: hidden;
   height: 130px;
   width: 130px;
+  position: relative;
 }
 .movie-cast-container .cast-card .cast-profile-photo img {
   border-radius: 50%;

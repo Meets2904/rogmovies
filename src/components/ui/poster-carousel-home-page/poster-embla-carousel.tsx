@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
     EmblaCarouselType,
     EmblaEventType,
@@ -10,8 +10,9 @@ import {
     PrevButton,
     usePrevNextButtons
 } from './poster-embla-carousel-arrow-btn'
-import {  useDotButton } from './poster-embla-carousel-dot-btn'
+import { useDotButton } from './poster-embla-carousel-dot-btn'
 import { Circle } from 'lucide-react'
+import { CircularProgress } from '@mui/material'
 
 const TWEEN_FACTOR_BASE = 0.52
 
@@ -24,10 +25,11 @@ type PropType = {
 }
 
 const PosterEmblaCarousel: React.FC<PropType> = (props) => {
-    const {  options } = props
+    const { options } = props
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
     const tweenFactor = useRef(0)
     const tweenNodes = useRef<HTMLElement[]>([])
+    const [imageLoading, setImageLoading] = useState(true)
 
     const { selectedIndex, scrollSnaps, onDotButtonClick } =
         useDotButton(emblaApi)
@@ -107,6 +109,14 @@ const PosterEmblaCarousel: React.FC<PropType> = (props) => {
 
     const images: string[] = ["../../../../src/assets/images/home-page-carousel/poster-1.jpg", "../../../../src/assets/images/home-page-carousel/poster-2.jpg", "../../../../src/assets/images/home-page-carousel/poster-3.jpg", "../../../../src/assets/images/home-page-carousel/poster-4.jpg", "../../../../src/assets/images/home-page-carousel/poster-5.jpg", "../../../../src/assets/images/home-page-carousel/poster-6.jpg"]
 
+    const handleImageLoad = () => {
+        setImageLoading(false)
+    }
+
+    const handleImageError = () => {
+        setImageLoading(false)
+    }
+
     return (
         <div className="embla">
             <div className='embla-heading'><h2>Latest Movies</h2></div>
@@ -118,7 +128,10 @@ const PosterEmblaCarousel: React.FC<PropType> = (props) => {
                                 opacity: index === selectedIndex ? 1 : 0.5,
                                 transition: 'opacity 0.3s ease'
                             }}>
-                                <div className={`embla__slide__number`}><img src={image} /></div>
+                                <div className={`embla__slide__number`}>
+                                    {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "47%" }}><CircularProgress /></div>}
+                                    <img src={image} onLoad={handleImageLoad} onError={handleImageError} />
+                                </div>
                             </div>
                         ))
                     }

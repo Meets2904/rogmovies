@@ -5,6 +5,9 @@ import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Star } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import MovieSkeletonCard from '../ui/movie-skeleton-card/movie-skeleton-card';
+import { useState } from 'react';
+import { CircularProgress } from '@mui/material';
 
 type PropType = {
     slides: number[]
@@ -27,6 +30,7 @@ const MovieRecommendations = (props: PropType) => {
 
     const { options } = props
     const [emblaRef] = useEmblaCarousel(options)
+    const [imageLoading, setImageLoading] = useState(true)
     const api_key = import.meta.env.VITE_API_KEY;
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300
 
@@ -48,7 +52,7 @@ const MovieRecommendations = (props: PropType) => {
         }
     }
 
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ['movieRecommendationsData', props?.movieID, props?.tvshowID],
         queryFn: fetchRecommendationData,
     })
@@ -57,6 +61,14 @@ const MovieRecommendations = (props: PropType) => {
 
     if (!data || data?.length === 0) {
         return null;
+    }
+
+    const handleImageLoad = () => {
+        setImageLoading(false)
+      }
+    
+      const handleImageError = () => {
+        setImageLoading(false)
       }
 
     return (
@@ -64,11 +76,15 @@ const MovieRecommendations = (props: PropType) => {
             <div className='movie-recommendations-heading'><h3>Recommendations</h3></div>
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
+                    {isLoading && <MovieSkeletonCard length={20} />}
                     {data?.map((movie: RecommendationData, index: number) => (
                         <div className='embla_slide movie-recommendations-container' key={index}>
-                           {movie?.poster_path &&  <div className='embla_slide_number recommendations-movie-card'>
+                            {movie?.poster_path && <div className='embla_slide_number recommendations-movie-card'>
                                 <div className='recommendations-movie-poster'>
-                                    <NavLink to={`/movie/detail/${movie?.id}`}><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></NavLink>
+                                    <NavLink to={`/movie/detail/${movie?.id}`}>
+                                     {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
+                                    <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" />
+                                    </NavLink>
                                 </div>
                                 <h6>{movie?.original_title ? movie?.original_title : movie?.original_name}</h6>
                                 <div className='recommendations-movie-date'>

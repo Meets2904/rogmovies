@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import './styles/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import ProfilePage from './pages/profile-page/profile-page.tsx';
 import LoginPage from './pages/login-page/login-page.tsx';
 import HomePage from './pages/home-page/home-page.tsx';
@@ -17,6 +17,8 @@ import TvDetailPge from './pages/tv-detail-page/tv-detail-page.tsx';
 
 
 const queryClient = new QueryClient();
+
+const session_id = localStorage.getItem('sessionId');
 
 const router = createBrowserRouter([
   {
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/watchlist-page',
-        element: <WatchListPage />,
+        element: session_id ? <WatchListPage /> : <Navigate replace to={'/'}/>,
       },
       {
         path: 'movie/upcoming',
@@ -84,7 +86,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <LoginPage/> 
+    element: session_id ? <Navigate replace to={'/'}/> : <LoginPage/>
   }
 ])
 

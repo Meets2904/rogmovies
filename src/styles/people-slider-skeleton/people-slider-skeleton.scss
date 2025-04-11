@@ -1,0 +1,22 @@
+.people-slider-skeleton-container {
+
+
+    .people-slider-skeleton {
+        margin: 0 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .people-slider-skeleton-thumbnail {
+            background-color: rgba(255, 255, 255, 0.356);
+            height: 130px;
+            width: 130px;
+            border-radius: 50%;
+        }
+
+        .people-slider-skeleton-text {
+            background-color: rgba(255, 255, 255, 0.356);
+            width: 75px;
+        }
+    }
+}

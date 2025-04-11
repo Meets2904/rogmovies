@@ -6,6 +6,8 @@ import { Star } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { NavLink } from 'react-router-dom';
 import MovieSkeletonCard from '../ui/movie-skeleton-card/movie-skeleton-card';
+import { useState } from 'react';
+import { CircularProgress } from '@mui/material';
 
 type PropType = {
     slides: number[]
@@ -25,6 +27,7 @@ const UpcomingMoviesSlider = (props: PropType) => {
 
     const {  options } = props
     const [emblaRef] = useEmblaCarousel(options)
+    const [imageLoading, setImageLoading] = useState(true)
     const api_key = import.meta.env.VITE_API_KEY;
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300
 
@@ -41,10 +44,18 @@ const UpcomingMoviesSlider = (props: PropType) => {
         }
     }
 
-    const { isLoading, error, data: moviesData} =useQuery({
+    const { isLoading, isError, data: moviesData} =useQuery({
         queryKey: ['upcomingMoviesData'],
         queryFn: fetchMovies,
     })
+
+    const handleImageLoad = () => {
+        setImageLoading(false)
+      }
+    
+      const handleImageError = () => {
+        setImageLoading(false)
+      }
 
     return (
         <section className='upcoming-movies-section container'>
@@ -52,13 +63,16 @@ const UpcomingMoviesSlider = (props: PropType) => {
                 <h3>Upcoming Movies</h3>
                 <NavLink to='movie/upcoming' className='see-all-link'><p>See All</p></NavLink>
             </div>
+            {isError && <div style={{color: 'white', fontSize: '25px'}}>Currently Data Is Not Available</div>}
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
                     {isLoading && <MovieSkeletonCard length={20}/>}
                     {moviesData?.map((movie: UpcomingMovieData, index: number) => (
                         <div className='embla_slide movie-card-container' key={index}>
                             <div className='embla_slide_number upcoming-movie-card'>
-                                <div className='upcoming-movie-poster'><NavLink to={`/movie/detail/${movie?.id}`}><img src={`${image_url_300}${movie?.poster_path}`} alt="" /></NavLink></div>
+                                <div className='upcoming-movie-poster'><NavLink to={`/movie/detail/${movie?.id}`}>
+                                {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%"}}><CircularProgress /></div>}
+                                <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></NavLink></div>
                                 <h6>{movie?.title}</h6>
                                 <div className='upcoming-movie-date'>
                                     <p>{movie?.release_date}</p>

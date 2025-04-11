@@ -55,6 +55,7 @@
                 height: 150px;
                 border-radius: 50%;
                 overflow: hidden;
+                position: relative;
                 @include breakpoint1 {
                     width: 100px;
                     height: 100px;

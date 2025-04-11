@@ -42,6 +42,7 @@
 .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-poster {
   height: 250px;
   width: 200px;
+  position: relative;
 }
 @media screen and (max-width: 600px) {
   .movie-recommendations-section .movie-recommendations-container .recommendations-movie-card .recommendations-movie-poster {

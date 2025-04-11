@@ -118,24 +118,26 @@
         .movie-dropdown-menu {
             position: absolute;
             top: 30px;
+            left: -4px;
             border: 1px solid grey;
             padding: 5px 10px;
             border-radius: 15px;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: saturate(180%) blur(10px);
-            
+            width: 120px;
+            // background: rgba(0, 0, 0, 0.8);
+            // backdrop-filter: saturate(180%) blur(10px);
+            background-color: black;
+
 
 
             .movie-dropdown-menu-list-wrapper {
                 list-style: none;
                 text-decoration: none;
-                
+
                 li {
                     text-decoration: none;
                     color: $white;
                     width: 100%;
-                    font-size: 14px;
+                    font-size: 18px;
                     font-weight: 300;
                     margin-bottom: 5px;
                     transition: 0.5s ease-in;
@@ -150,12 +152,14 @@
         .tv-dropdown-menu {
             position: absolute;
             top: 30px;
+            left: 0;
             border: 1px solid grey;
             padding: 5px 10px;
             border-radius: 15px;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: saturate(180%) blur(10px);
+            width: 120px;
+            // background: rgba(0, 0, 0, 0.8);
+            // backdrop-filter: saturate(180%) blur(10px);
+            background-color: black;
 
 
             .tv-dropdown-menu-list-wrapper {
@@ -166,7 +170,7 @@
                     text-decoration: none;
                     color: $white;
                     width: 100%;
-                    font-size: 14px;
+                    font-size: 18px;
                     font-weight: 300;
                     margin-bottom: 5px;
                     transition: 0.5s ease-in;
