@@ -11,9 +11,7 @@ import HomePage from './pages/home-page/home-page.tsx';
 import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
 import WatchListPage from './pages/watchlist-page/watchlist-page.tsx';
 import MoviesPage from './pages/movies-page/movies-page.tsx';
-import TvSeriesPage from './pages/tv-series-page/tv-series-page.tsx';
 import MovieDetailPage from './pages/movie-detail-page/movie-detail-page.tsx';
-import TvDetailPge from './pages/tv-detail-page/tv-detail-page.tsx';
 
 
 const queryClient = new QueryClient();
@@ -43,36 +41,12 @@ const router = createBrowserRouter([
         element: session_id ? <WatchListPage /> : <Navigate replace to={'/'}/>,
       },
       {
-        path: 'movie/upcoming',
+        path: '/movie/:category',
         element: <MoviesPage />,
       },
       {
-        path: 'movie/now_playing',
+        path: '/tv/:list',
         element: <MoviesPage/>
-      },
-      {
-        path: '/movie/popular',
-        element: <MoviesPage/>
-      },
-      {
-        path: '/movie/top_rated',
-        element: <MoviesPage/>
-      },
-      {
-        path: '/tv/airing_today',
-        element: <TvSeriesPage />
-      },
-      {
-        path: '/tv/on_the_air',
-        element: <TvSeriesPage />
-      },
-      {
-        path: '/tv/popular',
-        element: <TvSeriesPage />
-      },
-      {
-        path: 'tv/top_rated',
-        element: <TvSeriesPage />
       },
       {
         path: '/movie/detail/:movieID',
@@ -80,7 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/tv-show/detail/:tvshowID',
-        element: <TvDetailPge />
+        element: <MovieDetailPage />
       },
     ]
   },

@@ -89,10 +89,10 @@ const TrendingEmblaSlider = (props: PropType) => {
                   {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
                   <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" />
                 </NavLink></div>
-                <h6>{movie?.title}</h6>
+                <h6>{movie?.title || 'NA'}</h6>
                 <div className='upcoming-movie-date'>
-                  <p>{movie?.release_date}</p>
-                  <div className='upcoming-movie-vote'><Star size={18} fill='orange' color='orange' className='star' /><span>{movie?.vote_average}</span></div>
+                  <p>{movie?.release_date || 'NA'}</p>
+                  <div className='upcoming-movie-vote'><Star size={18} fill='orange' color='orange' className='star' /><span>{movie?.vote_average || 'NA'}</span></div>
                 </div>
               </div>
             </div>

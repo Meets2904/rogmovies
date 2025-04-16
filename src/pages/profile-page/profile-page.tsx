@@ -6,6 +6,7 @@ import axiosInstance from '../../axios/axios-instance';
 import ProfileSkeleton from '../../components/ui/profile-skeleton/profile-skeleton';
 import { useState } from 'react';
 import { CircularProgress } from '@mui/material';
+import toast, { Toaster } from 'react-hot-toast';
 
 type UserData = {
   username: string | number;
@@ -23,6 +24,7 @@ const ProfilePage = () => {
     localStorage.clear();
     navigate('/');
     window.location.reload();
+    toast.success("LogOut Successfull");
   }
   const session_id = localStorage.getItem("sessionId")
   const api_key = localStorage.getItem("api_key")
@@ -58,7 +60,7 @@ const ProfilePage = () => {
   const handleImageError = () => {
     setImageLoading(false)
   }
-
+  
   return (
     <section className='profile-section-container container'>
       {isLoading && <ProfileSkeleton />}
@@ -70,7 +72,7 @@ const ProfilePage = () => {
         {!isLoading && <h6>Username:- <span>{user?.username}</span></h6>}
         {!isLoading && <h6>UserID:- <span>{user?.userID}</span></h6>}
         {!isLoading && <h6>Name:- <span>{user?.name}</span></h6>}
-        {!isLoading && <button className='log-out-btn' onClick={handleLogOut}>LogOut</button>}
+        {!isLoading && <button className='log-out-btn' onClick={handleLogOut}>LogOut <Toaster/></button>}
       </div>
     </section>
   )

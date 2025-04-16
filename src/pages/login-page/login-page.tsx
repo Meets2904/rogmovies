@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axiosInstance from '../../axios/axios-instance';
+import toast, { Toaster } from 'react-hot-toast';
 
 const schema = z.object({
     api_key: z.string().min(1, { message: "API Key is required" }),
@@ -14,7 +15,7 @@ const LoginPage = () => {
         resolver: zodResolver(schema),
     });
 
-    const onSubmit = (data: any) => {
+    const onSubmit = async (data: any) => {
         console.log('Submitting data:', data);
 
         const payload = {
@@ -24,27 +25,29 @@ const LoginPage = () => {
         console.log(payload?.api_key);
 
         try {
-            axiosInstance.get(`authentication/token/new?api_key=${payload?.api_key}`)
-                .then((response) => {
-                    console.log("request_token", response?.data.request_token);
+            const response = await axiosInstance.get(`authentication/token/new?api_key=${payload?.api_key}`)
+            console.log("request_token", response?.data.request_token);
+            if (response?.data?.request_token) {
+                // Save the token details to localStorage
+                localStorage.setItem("userTokenDetails", JSON.stringify(response.data));
+                localStorage.setItem("request_token", response?.data.request_token);
 
-                    if (response?.data?.request_token) {
-                        // Save the token details to localStorage
-                        localStorage.setItem("userTokenDetails", JSON.stringify(response.data));
-                        localStorage.setItem("request_token", response?.data.request_token);
+                toast.success('Successfully logged in! Redirecting...');
 
-                        // Redirect to the authorization page with the correct redirect URL
-                        const redirectUrl = encodeURIComponent('http://localhost:5173/approved');
-                        window.location.href = `https://www.themoviedb.org/authenticate/${response?.data.request_token}?redirect_to=${redirectUrl}`;
 
-                    } else {
-                        console.error("Failed to get request token");
-                    }
-                }).catch((error) => {
-                    console.error("Error in authentication request", error);
-                });
-        } catch (error) {
+                // Redirect to the authorization page with the correct redirect URL
+                const redirectUrl = encodeURIComponent('http://localhost:5173/approved');
+                window.location.href = `https://www.themoviedb.org/authenticate/${response?.data.request_token}?redirect_to=${redirectUrl}`;
+
+            } else {
+                console.error("Failed to get request token");
+                toast.error('Failed to get request token.');
+            }
+
+        } catch (error: any) {
             console.error("Unexpected error", error);
+            toast.error(error?.response.data.status_message || 'An error occurred.');
+
         }
     };
 
@@ -60,7 +63,7 @@ const LoginPage = () => {
                         <input type="text" {...register("api_key")} id='api_key' placeholder='Enter Api Key Here' />
                         {errors.api_key && <p>{errors.api_key.message}</p>}
                     </div>
-                    <button className='login-btn' type='submit'>Login</button>
+                    <button className='login-btn' type='submit'>Login<Toaster/></button>
                 </form>
             </div>
             <div className='login-instruction-container'>

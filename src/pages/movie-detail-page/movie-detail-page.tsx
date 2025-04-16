@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../../axios/axios-instance';
 import '../../styles/movie-detail-page/movie-detail-page.css';
-import MovieCredits from '../../components/movie-credits/movie-credits';
 import { EmblaOptionsType } from 'embla-carousel';
 import MovieVideos from '../../components/movie-videos/movie-videos';
 import MovieReviews from '../../components/movie-reviews/movie-reviews';
@@ -11,6 +10,7 @@ import AddWatchlistBtn from '../../components/ui/add-to-watchlist-btn/add-to-wat
 import { useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import MovieTvDetailSkeleton from '../../components/ui/movie-tv-detail-skeleton/movie-tv-detail-skeleton';
+import PeopleSlider from '../../components/people-slider/people-slider';
 
 // Movie Credits Slider
 const movie_cast_options: EmblaOptionsType = { dragFree: true }
@@ -38,16 +38,25 @@ const MovieDetailPage = () => {
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
 
     const fetchMovieDetails = async () => {
-        try {
-            const response = await axiosInstance.get(`movie/${params?.movieID}?language=en-US&api_key=${api_key}`)
-            return response?.data
-        } catch (error) {
-            console.log(error)
+        if(params?.movieID){
+            try {
+                const response = await axiosInstance.get(`movie/${params?.movieID}?language=en-US&api_key=${api_key}`)
+                return response?.data
+            } catch (error) {
+                console.log(error)
+            }
+        }else if (params?.tvshowID) {
+            try {
+                const response = await axiosInstance.get(`tv/${params?.tvshowID}?language=en-US&api_key=${api_key}`)
+                return response?.data
+              } catch (error) {
+                console.log(error)
+              }
         }
     }
 
     const { data: movieData, isLoading} = useQuery({
-        queryKey: ['movieDetails', params?.movieID],
+        queryKey: ['movieDetails', params?.movieID, params?.tvshowID],
         queryFn: fetchMovieDetails,
     })
 
@@ -82,30 +91,30 @@ const MovieDetailPage = () => {
                         {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
                         <img src={`${image_url_300}${movieData?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></div>
                     <div className='movie-details'>
-                        <h2>{movieData?.original_title}</h2>
-                        <p className='movie-release-date'>{movieData?.release_date}</p>
+                        <h2>{movieData?.original_title || movieData?.original_name || 'NA'}</h2>
+                        <p className='movie-release-date'>{movieData?.release_date || movieData?.first_air_date || 'NA'}</p>
                         <div className='movie-genre-container'>{movieData?.genres.map((genre: any, index: number) => (
-                            <p key={index}>{genre?.name}</p>
+                            <p key={index}>{genre?.name || 'NA'}</p>
                         ))}</div>
-                        <p className='movie-overview-detail'>{movieData?.overview}</p>
-                        <AddWatchlistBtn movieID={params?.movieID} />
+                        <p className='movie-overview-detail'>{movieData?.overview || 'NA'}</p>
+                        <AddWatchlistBtn movieID={params?.movieID} tvshowID={params?.tvshowID}/>
                     </div>
                 </div>}
 
                 <div className='movie-full-cast'>
-                    <MovieCredits movieID={params?.movieID} slides={movie_cast_slides} options={movie_cast_options} />
+                    <PeopleSlider movieID={params?.movieID} tvshowID={params?.tvshowID} slides={movie_cast_slides} options={movie_cast_options} />
                 </div>
 
                 <div className='movie-videos'>
-                    <MovieVideos movieID={params?.movieID} slides={movie_videos_slides} options={movie_videos_options} />
+                    <MovieVideos movieID={params?.movieID} tvshowID={params?.tvshowID} slides={movie_videos_slides} options={movie_videos_options} />
                 </div>
 
                 <div className='movie-reviews'>
-                    <MovieReviews movieID={params?.movieID} />
+                    <MovieReviews movieID={params?.movieID} tvshowID={params?.tvshowID}/>
                 </div>
 
                 <div className='movie-recommendations'>
-                    <MovieRecommendations movieID={params?.movieID} slides={movie_recommendations_slides} options={movie_recommendations_options} />
+                    <MovieRecommendations movieID={params?.movieID} tvshowID={params?.tvshowID} slides={movie_recommendations_slides} options={movie_recommendations_options} />
                 </div>
             </div>
         </section>

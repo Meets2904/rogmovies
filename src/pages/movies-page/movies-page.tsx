@@ -3,7 +3,7 @@ import '../../styles/movies-page/movies-page.css';
 import { useEffect, useRef, useState } from 'react';
 import axiosInstance from '../../axios/axios-instance';
 import { Star } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import MoviePageSkeletonCard from '../../components/ui/movie-page-skeleton-card/movie-page-skeleton-card';
 import { CircularProgress } from '@mui/material';
 
@@ -14,24 +14,40 @@ type MoviesPageData = {
   title: string,
   release_date: string | number,
   vote_average: number,
+  original_name: string,
+  first_air_date: string | number,
 }
 
 const MoviesPage = () => {
   const [imageLoading, setImageLoading] = useState(true)
   const api_key = import.meta.env.VITE_API_KEY;
   const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
+  const params = useParams();
 
 
   const fetchUpcomingMoviesData = async ({ pageParam = 1 }: any) => {
-    const { pathname } = location;
-    const response = await axiosInstance.get(
-      `${pathname}?language=en-US&page=${pageParam}&api_key=${api_key}`
-    );
-    console.log(response?.data);
-    return response?.data;
+    if (params?.category) {
+      try {
+        const response = await axiosInstance.get(
+          `movie/${params?.category}?language=en-US&page=${pageParam}&api_key=${api_key}`
+        );
+        console.log("Render Done", response?.data);
+        return response?.data;
+      } catch (error) {
+        console.log(error)
+      }
+    }else if (params?.list){
+      try {
+        const response = await axiosInstance.get(
+          `tv/${params?.list}?language=en-US&page=${pageParam}&api_key=${api_key}`
+        );
+        console.log("Render Done", response?.data);
+        return response?.data;
+      } catch (error) {
+        console.log(error)
+      }
+    }
   };
-
-  const { pathname } = location;
 
   const {
     data: moviesData,
@@ -40,7 +56,7 @@ const MoviesPage = () => {
     isError,
     isLoading,
   } = useInfiniteQuery({
-    queryKey: ['MoviesPageData', pathname],
+    queryKey: ['MoviesPageData', params?.category, params?.list],
     queryFn: fetchUpcomingMoviesData,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -83,6 +99,10 @@ const MoviesPage = () => {
   const handleImageError = () => {
     setImageLoading(false)
   }
+
+  const { pathname } = location
+
+
   return (
     <section className='movies-page container'>
 
@@ -91,6 +111,10 @@ const MoviesPage = () => {
         {pathname == '/movie/popular' && <p>Popular Movies</p>}
         {pathname == '/movie/top_rated' && <p>Top Rated Movies</p>}
         {pathname == '/movie/upcoming' && <p>Up-Coming Movies</p>}
+        {pathname == '/tv/airing_today' && <p>Airing Today Tv Series</p>}
+        {pathname == '/tv/on_the_air' && <p>On The Air Tv Series</p>}
+        {pathname == '/tv/popular' && <p>Popular Tv Series</p>}
+        {pathname == '/tv/top_rated' && <p>Top-Rated Tv Series</p>}
       </div>
 
       {isError && <div style={{ color: 'white', fontSize: '25px' }}>Currently Data Is Not Available</div>}
@@ -100,14 +124,16 @@ const MoviesPage = () => {
             {isLoading && <MoviePageSkeletonCard length={page?.results.length} />}
             {page?.results.map((movie: MoviesPageData, index: number) => (
               movie?.poster_path && <div key={index} className='movies-card'>
-                <div className='movie-card-poster'><NavLink to={`/movie/detail/${movie?.id}`}>
-                  {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
-                  <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt={movie?.title} />
-                </NavLink></div>
-                <h6>{movie?.title}</h6>
+                <div className='movie-card-poster'>
+                  <NavLink to={`${params?.category ? `/movie/detail/${movie?.id}` : `/tv-show/detail/${movie?.id}`}`}>
+                    {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
+                    <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt={movie?.title} />
+                  </NavLink>
+                </div>
+                <h6>{movie?.title || movie?.original_name || 'NA'}</h6>
                 <div className='movie-date-page'>
-                  <p>{movie?.release_date}</p>
-                  <div className='movie-vote'><Star size={18} fill='orange' color='orange' /><span>{(movie?.vote_average).toFixed(2)}</span></div>
+                  <p>{movie?.release_date || movie?.first_air_date || 'NA'}</p>
+                  <div className='movie-vote'><Star size={18} fill='orange' color='orange' /><span>{(movie?.vote_average).toFixed(2) || 'NA'}</span></div>
                 </div>
               </div>
             ))}

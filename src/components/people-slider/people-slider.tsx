@@ -2,7 +2,7 @@ import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { useState } from 'react'
 import axiosInstance from '../../axios/axios-instance'
-import '../../styles/trending-people-slider/trending-people-slider.css';
+import '../../styles/people-slider/people-slider.css';
 import { useQuery } from '@tanstack/react-query';
 import { CircularProgress } from '@mui/material';
 import PeopleSliderSkeleton from '../ui/people-slider-skeleton/people-slider-skeleton';
@@ -10,6 +10,8 @@ import PeopleSliderSkeleton from '../ui/people-slider-skeleton/people-slider-ske
 type PropType = {
     slides: number[]
     options?: EmblaOptionsType
+    movieID?: any
+    tvshowID?: any
 }
 
 type PeopleData = {
@@ -18,28 +20,43 @@ type PeopleData = {
     known_for_department: string;
 }
 
-const TrendingPeopleSlider = (props: PropType) => {
+const PeopleSlider = ({options,movieID,tvshowID}: PropType) => {
 
-    const { options } = props
     const [emblaRef] = useEmblaCarousel(options)
     const [imageLoading, setImageLoading] = useState(true)
     const api_key = import.meta.env.VITE_API_KEY;
     const image_url_200 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_200
 
     const fetchPeopleData = async () => {
-        try {
-            const response = await axiosInstance.get(`trending/person/day?language=en-US&api_key=${api_key}`)
-            console.log("Trending People Data", response?.data.results)
-            const data = response?.data.results;
-            return data;
-        } catch (error) {
-            console.log(error)
+        if(movieID){
+            try {
+                const response = await axiosInstance.get(`movie/${movieID}/credits?language=en-US&api_key=${api_key}`)
+                return response?.data.cast
+            } catch (error) {
+                console.log(error)
+            }
+        } else if(tvshowID){
+            try {
+                const response = await axiosInstance.get(`tv/${tvshowID}/credits?language=en-US&api_key=${api_key}`)
+                return response?.data.cast
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            try {
+                const response = await axiosInstance.get(`trending/person/day?language=en-US&api_key=${api_key}`)
+                console.log("Trending People Data", response?.data.results)
+                const data = response?.data.results;
+                return data;
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
 
     const { isLoading, isError, data: peopleData } = useQuery({
-        queryKey: ['TrendingPeopleSliderData'],
+        queryKey: ['TrendingPeopleSliderData', movieID, tvshowID],
         queryFn: fetchPeopleData
     })
 
@@ -52,6 +69,10 @@ const TrendingPeopleSlider = (props: PropType) => {
       }
 
       const length = peopleData?.length
+
+      if (!peopleData || peopleData?.length === 0) {
+        return null;
+      }
 
     return (
         <section className='trending-people-section container'>
@@ -79,4 +100,4 @@ const TrendingPeopleSlider = (props: PropType) => {
     )
 }
 
-export default TrendingPeopleSlider
+export default PeopleSlider

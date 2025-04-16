@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import axiosInstance from '../../../axios/axios-instance';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from "react-hot-toast";
 
 type ProtoType = {
   movieID?: any;
@@ -34,12 +35,16 @@ const AddWatchlistBtn = (props: ProtoType) => {
     },
     onSuccess: (data: any) => {
       console.log('Added to watchlist', data);
+      sucessNotify()
     },
     onError: (error: any) => {
       console.log('Error for watchlist', error);
+      errorNotify()
     },
   });
 
+  const sucessNotify = () => toast.success("Added To Watchlist");
+  const errorNotify = () => toast.error("Failed To Add Into Watchlist");
   const addToWatchlist = () => {
     if (!session_id) {
       alert('You have to login first!');
@@ -59,6 +64,7 @@ const AddWatchlistBtn = (props: ProtoType) => {
       onClick={addToWatchlist}
     >
       Add To Watchlist
+      <Toaster />
     </button>
   );
 };
