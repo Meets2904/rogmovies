@@ -1,36 +1,20 @@
 import { NavLink } from 'react-router-dom'
 import '../../../styles/navbar/navbar.css'
-import { useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import useOutsideClick from '../../../hooks/useOutsideClick';
 
 const TvDropdownMenu = () => {
 
-    const tvRef = useRef<HTMLDivElement>(null);
-    const [isTvVisible, setIsTvVisible] = useState(false);
-
-
-    useEffect(() => {
-        const handleClickOutside = (event: any) => {
-            if (tvRef.current && !tvRef.current.contains(event.target) && isTvVisible) {
-                setIsTvVisible(false)
-            }
-        }
-
-        document.addEventListener("click", handleClickOutside);
-
-        return () => {
-            document.removeEventListener("click", handleClickOutside);
-        };
-    }, [tvRef, isTvVisible, setIsTvVisible])
+    const [ref, isVisible, setVisible]: any = useOutsideClick();
 
 
     return (
-        <div className='tv-shows-container' ref={tvRef} onClick={(e) => {
+        <div className='tv-shows-container' ref={ref} onClick={(e) => {
             e.preventDefault();
-            setIsTvVisible(!isTvVisible)
+            setVisible(!isVisible)
         }}>
-            <h6>TV Shows <span><ChevronDown className={`arrow-down ${isTvVisible == true ? 'rotate-arrow' : ''}`} /></span></h6>
-            {isTvVisible && <div className="tv-dropdown-menu" >
+            <h6>TV Shows <span><ChevronDown className={`arrow-down ${isVisible == true ? 'rotate-arrow' : ''}`} /></span></h6>
+            {isVisible && <div className="tv-dropdown-menu" >
                 <ul className="tv-dropdown-menu-list-wrapper">
                     <NavLink to='tv/airing_today' style={{ textDecoration: 'none' }}><li>Airing Today</li></NavLink>
                     <NavLink to='tv/on_the_air' style={{ textDecoration: 'none' }}><li>On The Air</li></NavLink>

@@ -1,15 +1,20 @@
 @import '../colors/colors';
 @import '../fonts/fonts';
+@import '../media-quaries';
 
 
-.watchlist-page-section{
+.watchlist-page-section {
     color: $white;
     font-family: $font_oswald;
     display: flex;
     flex-direction: column;
     gap: 30px;
 
-    .watchlist-page-heading-container{
+    @include breakpoint1 {
+        gap: 10px;
+    }
+
+    .watchlist-page-heading-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -18,44 +23,67 @@
         border-radius: 20px;
         margin-top: 15px;
 
-        h2{
+        h2 {
             font-size: 28px;
             font-weight: 500;
+
+            @include breakpoint1 {
+                font-size: 15px;
+            }
+
+            @include breakpoint2 {
+                font-size: 22px;
+            }
         }
 
-        .movies-tv-toggle-btn{
+        .movies-tv-toggle-btn {
             display: flex;
             align-items: center;
             gap: 20px;
-            .movies-btn{
-                color: $white;
-                font-family: $font_oswald;
-                padding: 5px 20px;
-                background-color: transparent;
-                border: none;
-                border: 1px solid gray;
-                border-radius: 15px;
-                font-weight: 400;
-                font-size: 15px;
-                cursor: pointer;
-                transition: 0.1s ease-in;
-            }
-            
-            .tv-shows-btn{
-                color: $white;
-                font-family: $font_oswald;
-                padding: 5px 20px;
-                background-color: transparent;
-                border: none;
-                border: 1px solid gray;
-                border-radius: 15px;
-                font-weight: 400;
-                font-size: 15px;
-                cursor: pointer;
-                transition: 0.1s ease-in;
+
+            @include breakpoint1 {
+                gap: 10px;
             }
 
-            .selected-time-frame{
+            .movies-btn {
+                color: $white;
+                font-family: $font_oswald;
+                padding: 5px 20px;
+                background-color: transparent;
+                border: none;
+                border: 1px solid gray;
+                border-radius: 15px;
+                font-weight: 400;
+                font-size: 15px;
+                cursor: pointer;
+                transition: 0.1s ease-in;
+
+                @include breakpoint1 {
+                    font-size: 12px;
+                    padding: 2px 10px;
+                }
+            }
+
+            .tv-shows-btn {
+                color: $white;
+                font-family: $font_oswald;
+                padding: 5px 20px;
+                background-color: transparent;
+                border: none;
+                border: 1px solid gray;
+                border-radius: 15px;
+                font-weight: 400;
+                font-size: 15px;
+                cursor: pointer;
+                transition: 0.1s ease-in;
+
+                @include breakpoint1 {
+                    font-size: 12px;
+                    padding: 2px 10px;
+                }
+            }
+
+            .selected-time-frame {
                 background-color: rgb(223, 99, 99);
                 color: black;
                 border-color: black;
@@ -63,12 +91,12 @@
         }
     }
 
-    .watchlist-card-container{
+    .watchlist-card-container {
         display: flex;
         flex-direction: column;
         gap: 30px;
 
-        .watchlist-card{
+        .watchlist-card {
             border: 2px solid gray;
             display: flex;
             align-items: center;
@@ -76,49 +104,92 @@
             padding: 20px;
             border-radius: 25px;
 
-            .watchlist-item-poster{
+            @include breakpoint1 {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .watchlist-item-poster {
                 border-radius: 20px;
                 width: 200px;
                 height: 300px;
                 position: relative;
-                
-                img{
+
+                @include breakpoint1 {
+                    width: 150px;
+                    height: 250px;
+                }
+
+                img {
                     border-radius: 20px;
                     height: 300px;
                     width: 200px;
                     border: 2px solid rgb(230, 68, 68);
+
+                    @include breakpoint1 {
+                        width: 150px;
+                        height: 250px;
+                    }
+
                 }
             }
 
-            .watchlist-item-details{
+            .watchlist-item-details {
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
                 font-family: $font_oswald;
                 color: $white;
-                h6{
+
+                @include breakpoint1 {
+                    gap: 5px;
+                }
+                @include breakpoint2 {
+                    gap: 10px;
+                }
+
+                h6 {
                     font-size: 18px;
                     font-weight: 500;
+                    @include breakpoint1 {
+                        font-size: 14px;
+                    }
+                    @include breakpoint2 {
+                        font-size: 14px;
+                    }
 
-                    span{
+                    span {
                         color: grey;
                     }
                 }
 
-                h5{
+                h5 {
                     font-size: 18px;
                     font-weight: 500;
+                    @include breakpoint1 {
+                        font-size: 14px;
+                    }
+                    @include breakpoint2 {
+                        font-size: 14px;
+                    }
 
-                    span{
+                    span {
                         color: grey;
                     }
                 }
 
-                p{
+                p {
                     font-size: 18px;
                     font-weight: 500;
+                    @include breakpoint1 {
+                        font-size: 14px;
+                    }
+                    @include breakpoint2 {
+                        font-size: 14px;
+                    }
 
-                    span{
+                    span {
                         color: grey;
                     }
                 }

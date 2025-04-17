@@ -20,7 +20,7 @@ type PeopleData = {
     known_for_department: string;
 }
 
-const PeopleSlider = ({options,movieID,tvshowID}: PropType) => {
+const PeopleSlider = ({ options, movieID, tvshowID }: PropType) => {
 
     const [emblaRef] = useEmblaCarousel(options)
     const [imageLoading, setImageLoading] = useState(true)
@@ -28,14 +28,14 @@ const PeopleSlider = ({options,movieID,tvshowID}: PropType) => {
     const image_url_200 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_200
 
     const fetchPeopleData = async () => {
-        if(movieID){
+        if (movieID) {
             try {
                 const response = await axiosInstance.get(`movie/${movieID}/credits?language=en-US&api_key=${api_key}`)
                 return response?.data.cast
             } catch (error) {
                 console.log(error)
             }
-        } else if(tvshowID){
+        } else if (tvshowID) {
             try {
                 const response = await axiosInstance.get(`tv/${tvshowID}/credits?language=en-US&api_key=${api_key}`)
                 return response?.data.cast
@@ -62,32 +62,32 @@ const PeopleSlider = ({options,movieID,tvshowID}: PropType) => {
 
     const handleImageLoad = () => {
         setImageLoading(false)
-      }
-    
-      const handleImageError = () => {
+    }
+
+    const handleImageError = () => {
         setImageLoading(false)
-      }
+    }
 
-      const length = peopleData?.length
+    const length = peopleData?.length
 
-      if (!peopleData || peopleData?.length === 0) {
+    if (!peopleData || peopleData?.length === 0) {
         return null;
-      }
+    }
 
     return (
         <section className='trending-people-section container'>
             <div className='trending-people-section-heading'>
                 <h3>Trending People</h3>
             </div>
-            {isError && <div style={{color: 'white', fontSize: '25px'}}>Currently Data Is Not Available</div>}
+            {isError && <div style={{ color: 'white', fontSize: '25px' }}>Currently Data Is Not Available</div>}
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
-                {isLoading && <PeopleSliderSkeleton length={length}/>}
+                    {isLoading && <PeopleSliderSkeleton length={length} />}
                     {peopleData?.map((people: PeopleData, index: number) => (
                         <div className='embla_slide people-card-container' key={index}>
                             {people?.profile_path && <div className='embla_slide_number people-card'>
                                 <div className='people-profile-photo'>
-                                    {imageLoading && <div style={{ position: 'absolute', top: "55px", right: '55px'}}><CircularProgress /></div>}
+                                    {imageLoading && <div style={{ position: 'absolute', top: "55px", right: '55px' }}><CircularProgress /></div>}
                                     <img src={`${image_url_200}${people?.profile_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></div>
                                 <h6>{people?.original_name}</h6>
                                 <p>{people?.known_for_department}</p>

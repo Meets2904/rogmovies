@@ -34,6 +34,7 @@ const MovieRecommendations = (props: PropType) => {
     const api_key = import.meta.env.VITE_API_KEY;
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300
 
+    // fetch recommendation handler for api calling
     const fetchRecommendationData = async () => {
         if (props?.movieID) {
             try {

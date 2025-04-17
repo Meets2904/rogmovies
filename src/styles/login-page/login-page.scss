@@ -1,5 +1,6 @@
 @import '../colors/colors';
 @import '../fonts/fonts';
+@import '../media-quaries';
 
 
 .login-page-section {
@@ -8,6 +9,19 @@
     display: flex;
     justify-content: space-around;
     margin-top: 120px;
+    @include breakpoint1 {
+        flex-direction: column;
+        margin-top: 50px;
+        gap: 30px;
+        align-items: center;
+    }
+
+    @include breakpoint2 {
+        flex-direction: column;
+        margin-top: 50px;
+        gap: 30px;
+        align-items: center;
+    }
 
     .login-form-container {
         display: flex;

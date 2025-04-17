@@ -17,8 +17,34 @@
   border-radius: 25px;
   position: relative;
 }
+@media screen and (max-width: 600px) {
+  .movies-video-container .video-card {
+    max-width: 250px !important;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movies-video-container .video-card {
+    max-width: 300px !important;
+  }
+}
 .movies-video-container .video-card .iframe-link {
   border-radius: 25px;
   max-width: 550px;
   max-height: 400px;
+}
+@media screen and (max-width: 600px) {
+  .movies-video-container .video-card .iframe-link {
+    max-width: 250px !important;
+    max-height: 200px !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movies-video-container .video-card .iframe-link {
+    max-width: 300px !important;
+    max-height: 250px !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
 }/*# sourceMappingURL=movie-videos.css.map */

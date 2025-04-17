@@ -23,11 +23,29 @@
         max-width: 550px !important;
         border-radius: 25px;
         position: relative;
+        @include breakpoint1 {
+            max-width: 250px !important;
+        }
+        @include breakpoint2 {
+            max-width: 300px !important;
+        }
 
         .iframe-link{
             border-radius: 25px;
             max-width: 550px;
             max-height: 400px;
+            @include breakpoint1 {
+                max-width: 250px !important;
+                max-height: 200px !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+            @include breakpoint2 {
+                max-width: 300px !important;
+                max-height: 250px !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
         }
     }
 }

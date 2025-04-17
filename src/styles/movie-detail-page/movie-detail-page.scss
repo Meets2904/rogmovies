@@ -23,10 +23,32 @@
         position: relative;
         top: -310px;
 
+        @include breakpoint1 {
+            top: -70px;
+        }
+
+        @include breakpoint2 {
+            top: -100px;
+        }
+        @include laptop_m {
+            top: -170px;
+        }
+
         .movie-detail-card {
             display: flex;
             align-items: center;
             gap: 70px;
+
+            @include breakpoint1 {
+                gap: 0;
+                flex-direction: column;
+                margin-bottom: 15px;
+            }
+
+            @include breakpoint2 {
+                gap: 30px;
+                margin-bottom: 15px;
+            }
 
             .movie-detail-card-poster {
                 height: 350px;
@@ -34,12 +56,31 @@
                 border-radius: 20px;
                 position: relative;
 
+                @include breakpoint1 {
+                    height: 175px;
+                        width: 175px;
+                }
+
+                @include breakpoint2 {
+                    height: 250px;
+                    width: 200px;
+                }
+
                 img {
                     height: 350px;
                     width: 300px;
                     border-radius: 20px;
                     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
+                    @include breakpoint1 {
+                        height: 175px;
+                        width: 175px;
+                    }
+
+                    @include breakpoint2 {
+                        height: 250px;
+                        width: 200px;
+                    }
                 }
             }
 
@@ -48,13 +89,34 @@
                 flex-direction: column;
                 gap: 15px;
 
+                @include breakpoint1 {
+                    gap: 5px;
+                }
+                @include breakpoint2 {
+                    gap: 5px;
+                }
+
                 h2 {
                     font-size: 25px;
+
+                    @include breakpoint1 {
+                        font-size: 16px;
+                    }
+                    @include breakpoint2 {
+                        font-size: 16px;
+                    }
                 }
 
                 .movie-release-date {
                     font-size: 20px;
                     color: rgb(189, 187, 187);
+
+                    @include breakpoint1 {
+                        font-size: 16px;
+                    }
+                    @include breakpoint2 {
+                        font-size: 16px;
+                    }
                 }
 
                 .movie-genre-container {
@@ -66,15 +128,31 @@
                         padding: 5px 10px;
                         background-color: #33415580;
                         border-radius: 10px;
+
+                        @include breakpoint1 {
+                            font-size: 14px;
+                            padding: 2px 7px;
+                        }
+                        @include breakpoint2 {
+                            font-size: 14px;
+                            padding: 2px 7px;
+                        }
                     }
                 }
 
-                .movie-overview-detail{
+                .movie-overview-detail {
                     font-size: 18px;
                     font-weight: 300;
+
+                    @include breakpoint1 {
+                        font-size: 14px;
+                    }
+                    @include breakpoint2 {
+                        font-size: 14px;
+                    }
                 }
 
-                .add-to-watchlist-btn{
+                .add-to-watchlist-btn {
                     width: fit-content;
                     padding: 5px 25px;
                     border-radius: 15px;
@@ -85,9 +163,18 @@
                     cursor: pointer;
                     transition: 0.2s ease-in;
                     font-family: $font_oswald;
+
+                    @include breakpoint1 {
+                        padding: 3px 15px;
+                        font-size: 12px;
+                    }
+                    @include breakpoint2 {
+                        padding: 3px 15px;
+                        font-size: 12px;
+                    }
                 }
 
-                .add-to-watchlist-btn:hover{
+                .add-to-watchlist-btn:hover {
                     background-color: red;
                     border-color: black;
                 }

@@ -126,6 +126,11 @@
             // background: rgba(0, 0, 0, 0.8);
             // backdrop-filter: saturate(180%) blur(10px);
             background-color: black;
+            @include breakpoint1 {
+                width: 65px;
+                top: 18px;
+                left: -12px;
+            }
 
 
 
@@ -141,6 +146,11 @@
                     font-weight: 300;
                     margin-bottom: 5px;
                     transition: 0.5s ease-in;
+
+                    @include breakpoint1 {
+                        font-size: 10px;
+                    }
+        
                 }
 
                 li:hover {
@@ -160,6 +170,10 @@
             // background: rgba(0, 0, 0, 0.8);
             // backdrop-filter: saturate(180%) blur(10px);
             background-color: black;
+            @include breakpoint1 {
+                width: 65px;
+                top: 18px;
+            }
 
 
             .tv-dropdown-menu-list-wrapper {
@@ -174,6 +188,9 @@
                     font-weight: 300;
                     margin-bottom: 5px;
                     transition: 0.5s ease-in;
+                    @include breakpoint1 {
+                        font-size: 10px;
+                    }
                 }
 
                 li:hover {

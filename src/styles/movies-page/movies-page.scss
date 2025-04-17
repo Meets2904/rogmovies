@@ -10,12 +10,33 @@
     flex-direction: column;
     gap: 30px;
 
+    @include breakpoint1 {
+        gap: 0px;
+    }
+    @include breakpoint2 {
+        gap: 0px;
+    }
+    @include laptop_m {
+        gap: 0px;
+    }
+    @include laptop_l {
+        gap: 0px;
+    }
+
     .movies-page-heading {
         padding: 0 20px;
+
         p {
             font-size: 30px;
             font-weight: 500;
             border-bottom: 1px solid $white;
+
+            @include breakpoint1 {
+                font-size: 15px;
+            }
+            @include breakpoint2 {
+                font-size: 25px;
+            }
         }
     }
 
@@ -30,11 +51,59 @@
             justify-content: space-around;
             margin-top: 30px;
 
+            @include mobile {
+                margin-top: 15px;
+                grid-template-columns: auto;
+                row-gap: 20px;
+                column-gap: 10px;
+                align-items: center;
+            }
+            @include tablet_s {
+                margin-top: 15px;
+                grid-template-columns: auto auto;
+                row-gap: 20px;
+                column-gap: 10px;
+            }
+            @include breakpoint2 {
+                margin-top: 15px;
+                grid-template-columns: auto auto auto;
+                row-gap: 20px;
+                column-gap: 10px;
+            }
+            @include laptop_m {
+                margin-top: 25px;
+                row-gap: 20px;
+                column-gap: 10px;
+            }
+            @include laptop_l {
+                margin-top: 25px;
+                row-gap: 20px;
+                column-gap: 10px;
+            }
+
             .movies-card {
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
                 max-width: 300px;
+
+                @include mobile {
+                    max-width: 250px;
+                }
+                @include tablet_s {
+                    max-width: 190px;
+                }
+                @include breakpoint2 {
+                    max-width: 180px;
+                }
+                @include laptop_m {
+                    max-width: 210px;
+                }
+                @include laptop_l {
+                    max-width: 225px;
+                }
+
+                
 
                 .movie-card-poster {
                     width: 300px;
@@ -42,23 +111,116 @@
                     border-radius: 15px;
                     position: relative;
 
+                    @include mobile {
+                        max-width: 250px;
+                        height: 250px;
+                    }
+                    @include tablet_s {
+                        max-width: 190px;
+                        height: 250px;
+                    }
+                    @include breakpoint2 {
+                        max-width: 180px;
+                        height: 250px;
+                    }
+                    @include laptop_m {
+                        max-width: 210px;
+                        height: 250px;
+                    }
+                    @include laptop_l {
+                        max-width: 225px;
+                        height: 250px;
+                    }
+
                     img {
                         width: 300px;
                         height: 350px;
                         border-radius: 15px;
                         border: 2px solid rgb(231, 79, 79);
+                        @include mobile {
+                            max-width: 250px;
+                            height: 250px;
+                        }
+                        @include tablet_s {
+                            max-width: 190px;
+                            height: 250px;
+                        }
+                        @include breakpoint2 {
+                            max-width: 180px;
+                            height: 250px;
+                        }
+                        @include laptop_m {
+                            max-width: 210px;
+                            height: 250px;
+                        }
+                        @include laptop_l {
+                            max-width: 225px;
+                            height: 250px;
+                        }
+                        
                     }
                 }
 
-                h6{
+                h6 {
                     font-size: 20px;
                     font-weight: 500;
+
+                    @include breakpoint1 {
+                        font-size: 14px;
+                    }
+                    @include breakpoint2 {
+                        font-size: 16px;
+                    }
+                    @include laptop_m {
+                        font-size: 16px;
+                    }
+                    @include laptop_l {
+                        font-size: 18px;
+                    }
                 }
 
-                .movie-date-page{
+                .movie-date-page {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
+
+                    p {
+                        @include breakpoint1 {
+                            font-size: 12px;
+                        }
+                        @include breakpoint2 {
+                            font-size: 14px;
+                        }
+                        @include laptop_m {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .movie-vote {
+                        .star {
+                            @include breakpoint1 {
+                                height: 12px;
+                            }
+                            @include breakpoint2 {
+                                height: 14px;
+                            }
+                            @include laptop_m {
+                                height: 14px;
+                            }
+                        }
+
+                        span {
+                            @include breakpoint1 {
+                                font-size: 12px;
+                            }
+                            @include breakpoint2 {
+                                font-size: 14px;
+                            }
+                            @include laptop_m {
+                                font-size: 14px;
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -39,11 +39,11 @@ const MoviesTVSlider = (props: PropType) => {
     const fetchMovies = async () => {
         try {
             const response = await axiosInstance.get(`${props.path}?language=en-US&page=1&api_key=${api_key}`)
-            console.log(" MoviesTv Data", response?.data.results)
+            console.error(" MoviesTv Data", response?.data.results)
             const data = response?.data.results;
             return data;
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 

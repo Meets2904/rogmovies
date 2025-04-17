@@ -6,6 +6,22 @@
   justify-content: space-around;
   margin-top: 120px;
 }
+@media screen and (max-width: 600px) {
+  .login-page-section {
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 30px;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .login-page-section {
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 30px;
+    align-items: center;
+  }
+}
 .login-page-section .login-form-container {
   display: flex;
   flex-direction: column;

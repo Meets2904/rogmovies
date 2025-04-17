@@ -18,10 +18,38 @@
   position: relative;
   top: -310px;
 }
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container {
+    top: -70px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container {
+    top: -100px;
+  }
+}
+@media screen and (max-width: 1100px) and (min-width: 921px) {
+  .movie-details-section .movie-detail-page-container {
+    top: -170px;
+  }
+}
 .movie-details-section .movie-detail-page-container .movie-detail-card {
   display: flex;
   align-items: center;
   gap: 70px;
+}
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card {
+    gap: 0;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card {
+    gap: 30px;
+    margin-bottom: 15px;
+  }
 }
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster {
   height: 350px;
@@ -29,23 +57,77 @@
   border-radius: 20px;
   position: relative;
 }
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster {
+    height: 175px;
+    width: 175px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster {
+    height: 250px;
+    width: 200px;
+  }
+}
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster img {
   height: 350px;
   width: 300px;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster img {
+    height: 175px;
+    width: 175px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-detail-card-poster img {
+    height: 250px;
+    width: 200px;
+  }
+}
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details {
+    gap: 5px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details {
+    gap: 5px;
+  }
+}
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details h2 {
   font-size: 25px;
+}
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details h2 {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details h2 {
+    font-size: 16px;
+  }
 }
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-release-date {
   font-size: 20px;
   color: rgb(189, 187, 187);
+}
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-release-date {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-release-date {
+    font-size: 16px;
+  }
 }
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-genre-container {
   display: flex;
@@ -57,9 +139,31 @@
   background-color: rgba(51, 65, 85, 0.5019607843);
   border-radius: 10px;
 }
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-genre-container p {
+    font-size: 14px;
+    padding: 2px 7px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-genre-container p {
+    font-size: 14px;
+    padding: 2px 7px;
+  }
+}
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-overview-detail {
   font-size: 18px;
   font-weight: 300;
+}
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-overview-detail {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .movie-overview-detail {
+    font-size: 14px;
+  }
 }
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .add-to-watchlist-btn {
   width: -moz-fit-content;
@@ -73,6 +177,18 @@
   cursor: pointer;
   transition: 0.2s ease-in;
   font-family: "Oswald", sans-serif;
+}
+@media screen and (max-width: 600px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .add-to-watchlist-btn {
+    padding: 3px 15px;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .add-to-watchlist-btn {
+    padding: 3px 15px;
+    font-size: 12px;
+  }
 }
 .movie-details-section .movie-detail-page-container .movie-detail-card .movie-details .add-to-watchlist-btn:hover {
   background-color: red;

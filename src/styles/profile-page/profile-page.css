@@ -13,6 +13,50 @@
   color: white;
   font-family: "Oswald", sans-serif;
 }
+@media screen and (max-width: 600px) {
+  .profile-section-container .profile-card {
+    position: static;
+    padding: 20px 25px 25px 25px;
+    margin-top: 100px;
+    max-width: 300px;
+    width: 100%;
+    justify-content: center;
+    justify-self: center;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .profile-section-container .profile-card {
+    position: static;
+    padding: 20px 25px 25px 25px;
+    margin-top: 100px;
+    max-width: 300px;
+    width: 100%;
+    justify-content: center;
+    justify-self: center;
+  }
+}
+@media screen and (max-width: 1100px) and (min-width: 921px) {
+  .profile-section-container .profile-card {
+    position: static;
+    padding: 20px 25px 25px 25px;
+    margin-top: 100px;
+    max-width: 350px;
+    width: 100%;
+    justify-content: center;
+    justify-self: center;
+  }
+}
+@media screen and (max-width: 1239px) and (min-width: 1101px) {
+  .profile-section-container .profile-card {
+    position: static;
+    padding: 20px 25px 25px 25px;
+    margin-top: 100px;
+    max-width: 400px;
+    width: 100%;
+    justify-content: center;
+    justify-self: center;
+  }
+}
 .profile-section-container .profile-card .profile-avatar {
   height: 250px;
   width: 250px;
@@ -20,9 +64,33 @@
   overflow: hidden;
   position: relative;
 }
+@media screen and (max-width: 600px) {
+  .profile-section-container .profile-card .profile-avatar {
+    max-width: 150px;
+    max-height: 150px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .profile-section-container .profile-card .profile-avatar {
+    max-width: 150px;
+    max-height: 150px;
+  }
+}
 .profile-section-container .profile-card .profile-avatar img {
   height: 250px;
   width: 250px;
+}
+@media screen and (max-width: 600px) {
+  .profile-section-container .profile-card .profile-avatar img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 601px) {
+  .profile-section-container .profile-card .profile-avatar img {
+    max-width: 150px;
+    max-height: 150px;
+  }
 }
 .profile-section-container .profile-card h6 {
   text-align: left;

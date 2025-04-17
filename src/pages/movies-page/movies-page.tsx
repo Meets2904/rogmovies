@@ -133,7 +133,7 @@ const MoviesPage = () => {
                 <h6>{movie?.title || movie?.original_name || 'NA'}</h6>
                 <div className='movie-date-page'>
                   <p>{movie?.release_date || movie?.first_air_date || 'NA'}</p>
-                  <div className='movie-vote'><Star size={18} fill='orange' color='orange' /><span>{(movie?.vote_average).toFixed(2) || 'NA'}</span></div>
+                  <div className='movie-vote'><Star size={18} fill='orange' color='orange' className='star'/><span>{(movie?.vote_average).toFixed(2) || 'NA'}</span></div>
                 </div>
               </div>
             ))}
