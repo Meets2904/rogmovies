@@ -37,7 +37,7 @@ const LoginPage = () => {
 
                 // Redirect to the authorization page with the correct redirect URL
                 // const redirectUrl = encodeURIComponent('http://localhost:5173/approved');
-                const redirectUrl = encodeURIComponent('https://rogmovies.vercel.app/approved');
+                const redirectUrl = encodeURIComponent('https://rogmovies-5wmio9bnx-meet-satasiyas-projects.vercel.app/approved');
                 // window.location.href = `https://www.themoviedb.org/authenticate/${response?.data.request_token}?redirect_to=${redirectUrl}`;
                 window.location.href = `https://www.themoviedb.org/authenticate/${response?.data.request_token}?redirect_to=${redirectUrl}`;
 

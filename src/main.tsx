@@ -31,10 +31,6 @@ const router = createBrowserRouter([
         element: <HomePage/>
       },
       {
-        path: '/approved',
-        element: <HomePage/>
-      },
-      {
         path: '/profile',
         element: <ProfilePage/>
       },
