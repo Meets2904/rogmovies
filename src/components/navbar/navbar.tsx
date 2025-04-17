@@ -28,7 +28,7 @@ const Navbar = () => {
                     <NavLink to={`${localStorage.getItem("sessionId") ? '/watchlist-page' : '/login'}`}><Heart color='white' className='heart-icon' /></NavLink>
                 </div>
                 <div className='user-profile'>
-                    <NavLink to={`${localStorage.getItem("sessionId") ? '/profile' : '/login'}`}>{localStorage.getItem("sessionId") ? <img src="../../../src/assets/images/avatar.jpg" alt="" className='user_image' /> : <SquareUser color='white' />}</NavLink>
+                    <NavLink to={`${localStorage.getItem("sessionId") ? '/profile' : '/login'}`}>{localStorage.getItem("sessionId") ? <img src="/avatar.jpg" alt="" className='user_image' /> : <SquareUser color='white' />}</NavLink>
                 </div>
             </div>
         </nav>

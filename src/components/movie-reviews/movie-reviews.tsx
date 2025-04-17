@@ -61,7 +61,7 @@ const MovieReviews = (props: ProtoType) => {
         {movieReviewsData?.map((review: MovieReviewData, index: number) => (
           <div className='review-card' key={index}>
             <div className='review-card-heading'>
-              <img src="../../../src/assets/images/profile-picture.png" alt="" />
+              <img src="/profile-picture.png" alt="" />
               <div className='reviewer-details'>
                 <h6>{review?.author}</h6>
                 <p>{formatDate(review?.created_at)}</p>

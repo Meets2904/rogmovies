@@ -14,7 +14,7 @@ const NotFoundPage = () => {
     <section className='not-found-container container'>
         <div className='not-found-page'>
             <div className='not_found_image'>
-                <img src="../../../src/assets/images/404_page.jpg" alt="" />
+                <img src="/404_page.jpg" alt="" />
             </div>
             <h1>It seems like you are on wrong page!</h1>
             <button className='home-page-btn' onClick={handlePage}>Go to Home Page</button>

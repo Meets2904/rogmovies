@@ -67,7 +67,7 @@ const ProfilePage = () => {
       <div className='profile-card'>
         <div className='profile-avatar'>
           {imageLoading && <div style={{ position: 'absolute', top: "40%", right: "40%" }}><CircularProgress /></div>}
-          <img src="../../../src/assets/images/avatar.jpg" onLoad={handleImageLoad} onError={handleImageError} alt="" />
+          <img src="/avatar.jpg" onLoad={handleImageLoad} onError={handleImageError} alt="" />
         </div>
         {!isLoading && <h6>Username:- <span>{user?.username}</span></h6>}
         {!isLoading && <h6>UserID:- <span>{user?.userID}</span></h6>}
