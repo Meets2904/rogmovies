@@ -12,6 +12,8 @@ import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
 import WatchListPage from './pages/watchlist-page/watchlist-page.tsx';
 import MoviesPage from './pages/movies-page/movies-page.tsx';
 import MovieDetailPage from './pages/movie-detail-page/movie-detail-page.tsx';
+import { Analytics } from "@vercel/analytics/react" 
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 const queryClient = new QueryClient();
@@ -69,6 +71,8 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <Analytics />
+      <SpeedInsights />
     </QueryClientProvider>
   </StrictMode>,
 )
