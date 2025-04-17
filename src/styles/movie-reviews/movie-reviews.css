@@ -56,7 +56,8 @@
   font-size: 16px;
   line-height: 30px;
 }
-.review-section .reviews-container .review-card .review-card-content .read-more-less--more, .review-section .reviews-container .review-card .review-card-content .read-more-less--less {
+.review-section .reviews-container .review-card .review-card-content .read-more-less--more,
+.review-section .reviews-container .review-card .review-card-content .read-more-less--less {
   color: rgb(131, 183, 201);
   margin-left: 7px;
 }/*# sourceMappingURL=movie-reviews.css.map */

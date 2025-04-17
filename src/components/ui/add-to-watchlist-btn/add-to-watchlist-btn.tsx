@@ -8,15 +8,16 @@ type ProtoType = {
   tvshowID?: any;
 };
 
-const AddWatchlistBtn = (props: ProtoType) => {
+const AddWatchlistBtn = ({ movieID, tvshowID }: ProtoType) => {
   const navigate = useNavigate();
   const api_key = localStorage.getItem('api_key');
   const session_id = localStorage.getItem('sessionId');
   const account_id = localStorage.getItem('userID');
 
+  // useMutation for watchlist updation
   const addWatchlistMutation = useMutation({
     mutationFn: async (mediaID: any) => {
-      const mediaType = props?.movieID ? 'movie' : 'tv';
+      const mediaType = movieID ? 'movie' : 'tv';
       const payload = {
         media_type: mediaType,
         media_id: mediaID,
@@ -33,12 +34,11 @@ const AddWatchlistBtn = (props: ProtoType) => {
       );
       return response?.data;
     },
-    onSuccess: (data: any) => {
-      console.log('Added to watchlist', data);
+    onSuccess: () => {
       sucessNotify()
     },
     onError: (error: any) => {
-      console.log('Error for watchlist', error);
+      console.error('Error for watchlist', error);
       errorNotify()
     },
   });
@@ -52,7 +52,7 @@ const AddWatchlistBtn = (props: ProtoType) => {
       return;
     }
 
-    const mediaID = props?.movieID || props?.tvshowID;
+    const mediaID = movieID || tvshowID;
     if (mediaID) {
       addWatchlistMutation.mutate(mediaID);
     }

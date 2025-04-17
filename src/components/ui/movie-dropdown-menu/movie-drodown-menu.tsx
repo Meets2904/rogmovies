@@ -6,12 +6,14 @@ import useOutsideClick from '../../../hooks/useOutsideClick';
 
 const MovieDropdownMenu = () => {
 
-    const [ref, isVisible, setVisible]: any= useOutsideClick();
+    // useOutsideClick Custom Hook
+    const [ref, isVisible, setVisible]: any = useOutsideClick();
 
     return (
-        <div className='movies-tab-container' ref={ref} onClick={(e)=> {
+        <div className='movies-tab-container' ref={ref} onClick={(e) => {
             e.preventDefault();
-            setVisible(!isVisible) }} >
+            setVisible(!isVisible)
+        }} >
             <h6>Movies <span><ChevronDown className={`arrow-down ${isVisible == true ? 'rotate-arrow' : ''}`} /></span></h6>
             {isVisible && <div className="movie-dropdown-menu" >
                 <ul className="movie-dropdown-menu-list-wrapper">

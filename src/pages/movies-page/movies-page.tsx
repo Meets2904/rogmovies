@@ -24,27 +24,25 @@ const MoviesPage = () => {
   const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
   const params = useParams();
 
-
+  // Function to fetch movies data
   const fetchUpcomingMoviesData = async ({ pageParam = 1 }: any) => {
     if (params?.category) {
       try {
         const response = await axiosInstance.get(
           `movie/${params?.category}?language=en-US&page=${pageParam}&api_key=${api_key}`
         );
-        console.log("Render Done", response?.data);
         return response?.data;
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
-    }else if (params?.list){
+    } else if (params?.list) {
       try {
         const response = await axiosInstance.get(
           `tv/${params?.list}?language=en-US&page=${pageParam}&api_key=${api_key}`
         );
-        console.log("Render Done", response?.data);
         return response?.data;
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   };
@@ -133,7 +131,7 @@ const MoviesPage = () => {
                 <h6>{movie?.title || movie?.original_name || 'NA'}</h6>
                 <div className='movie-date-page'>
                   <p>{movie?.release_date || movie?.first_air_date || 'NA'}</p>
-                  <div className='movie-vote'><Star size={18} fill='orange' color='orange' className='star'/><span>{(movie?.vote_average).toFixed(2) || 'NA'}</span></div>
+                  <div className='movie-vote'><Star size={18} fill='orange' color='orange' className='star' /><span>{(movie?.vote_average).toFixed(2) || 'NA'}</span></div>
                 </div>
               </div>
             ))}

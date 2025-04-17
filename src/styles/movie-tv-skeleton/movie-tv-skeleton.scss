@@ -1,54 +1,53 @@
-
-
-.movie-tv-skeleton-container{
+.movie-tv-skeleton-container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    
-    .movie-tv-skeleton{
+
+    .movie-tv-skeleton {
         display: flex;
         align-items: center;
         gap: 70px;
         width: 100%;
 
-        .movie-tv-skeleton-thumbnail{
+        .movie-tv-skeleton-thumbnail {
             background-color: rgba(255, 255, 255, 0.356);
             height: 350px;
             width: 300px;
             border-radius: 15px;
         }
 
-        .movie-tv-details-skeleton-container{
+        .movie-tv-details-skeleton-container {
             display: flex;
             flex-direction: column;
             gap: 5px;
-            .movie-tv-skeleton-text{
+
+            .movie-tv-skeleton-text {
                 background-color: rgba(255, 255, 255, 0.356);
                 width: 150px;
             }
 
-            .movie-tv-genre-skeleton{
+            .movie-tv-genre-skeleton {
                 display: flex;
                 align-items: center;
                 gap: 15px;
 
-                .movie-tv-skeleton-text{
+                .movie-tv-skeleton-text {
                     background-color: rgba(255, 255, 255, 0.356);
                     width: 100px;
                 }
             }
 
-            .movie-tv-overview-skeleton-text{
+            .movie-tv-overview-skeleton-text {
                 background-color: rgba(255, 255, 255, 0.356);
                 width: 700px;
             }
 
-            .movie-tv-btn-skeleton-text{
+            .movie-tv-btn-skeleton-text {
                 background-color: rgba(255, 255, 255, 0.356);
                 width: 100px;
             }
         }
-        
+
 
     }
 }

@@ -33,41 +33,42 @@
             flex-direction: column;
             gap: 10px;
 
-            .review-card-heading{
+            .review-card-heading {
                 display: flex;
                 align-items: center;
                 gap: 25px;
 
-                img{
+                img {
                     height: 80px;
                     width: 80px;
                     border-radius: 50%;
                     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 }
 
-                .reviewer-details{
+                .reviewer-details {
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
 
-                    h6{
+                    h6 {
                         font-size: 18px;
                         font-weight: 500;
                     }
 
-                    p{
+                    p {
                         font-size: 14px;
                         font-weight: 400;
                     }
                 }
             }
 
-            .review-card-content{
+            .review-card-content {
                 font-weight: 300;
                 font-size: 16px;
                 line-height: 30px;
 
-                .read-more-less--more, .read-more-less--less{
+                .read-more-less--more,
+                .read-more-less--less {
                     color: rgb(131, 183, 201);
                     margin-left: 7px;
                 }

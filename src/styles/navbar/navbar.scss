@@ -14,7 +14,6 @@
     justify-content: space-between;
     color: $white;
     font-family: $font_oswald;
-    // background-color: bisque;
     padding: 10px 20px;
     position: sticky;
     top: 0;
@@ -123,9 +122,8 @@
             padding: 5px 10px;
             border-radius: 15px;
             width: 120px;
-            // background: rgba(0, 0, 0, 0.8);
-            // backdrop-filter: saturate(180%) blur(10px);
             background-color: black;
+
             @include breakpoint1 {
                 width: 65px;
                 top: 18px;
@@ -150,7 +148,7 @@
                     @include breakpoint1 {
                         font-size: 10px;
                     }
-        
+
                 }
 
                 li:hover {
@@ -167,9 +165,8 @@
             padding: 5px 10px;
             border-radius: 15px;
             width: 120px;
-            // background: rgba(0, 0, 0, 0.8);
-            // backdrop-filter: saturate(180%) blur(10px);
             background-color: black;
+
             @include breakpoint1 {
                 width: 65px;
                 top: 18px;
@@ -188,6 +185,7 @@
                     font-weight: 300;
                     margin-bottom: 5px;
                     transition: 0.5s ease-in;
+
                     @include breakpoint1 {
                         font-size: 10px;
                     }

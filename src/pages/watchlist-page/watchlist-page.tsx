@@ -27,34 +27,35 @@ const WatchListPage = () => {
     const image_url_200 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_200;
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
 
+    // Function to fetch watchlist data
     const fetchWatchlistData = async () => {
         if (timeFrame == 'movies') {
             try {
                 const response = await axiosInstance.get(`account/null/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc&session_id=${session_id}&api_key=${api_key}`)
-                console.log("Watchlist Movies", response?.data.results)
                 const data = response?.data.results;
                 return data;
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         } else if (timeFrame == 'tv-shows') {
             try {
                 const response = await axiosInstance.get(`account/null/watchlist/tv?language=en-US&page=1&sort_by=created_at.asc&session_id=${session_id}&api_key=${api_key}`)
-                console.log("Watchlist Tv Shows", response?.data.results)
                 const data = response?.data.results;
                 return data;
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         }
     }
 
+    // React Query For Watchlist Data
     const { data: watchlistData, isLoading, isError } = useQuery({
         queryKey: ['watchlistData', timeFrame,],
         queryFn: fetchWatchlistData,
     })
 
 
+    // Image Loading Handler
     const handleImageLoad = () => {
         setImageLoading(false)
     }
@@ -75,32 +76,32 @@ const WatchListPage = () => {
                 </div>
             </div>
 
-            {isError && <div style={{color: 'white', fontSize: '25px'}}>Currently Data Is Not Available</div>}
-            {isLoading && <MovieTvDetailSkeleton length={length}/>}
-            {watchlistData?.length == 0 ? <p style={{ fontSize: '30px', display: 'flex', gap: '10px' }}>You Have Nothing To Watch Later! <img style={{ height: '50px', width: '50px' }} src="../../../src/assets/images/sad_emoji.png" alt="" /></p> : 
-            <div className='watchlist-card-container'>
-                {watchlistData?.map((item: WatchlistData, index: number) => (
-                    <div className='watchlist-card' key={index}>
-                        <div className='watchlist-item-poster'>
-                            {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
-                            {item?.poster_path 
-                            ? <NavLink to={`${timeFrame == 'movies' ? `/movie/detail/${item?.id}`: `/tv-show/detail/${item?.id}`}`}><img src={`${image_url_200}${item?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></NavLink> 
-                            : <NavLink to={`${timeFrame == 'movies' ? `/movie/detail/${item?.id}`: `/tv-show/detail/${item?.id}`}`}><img src={`${image_url_300}${item?.backdrop_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></NavLink>}
+            {isError && <div style={{ color: 'white', fontSize: '25px' }}>Currently Data Is Not Available</div>}
+            {isLoading && <MovieTvDetailSkeleton length={length} />}
+            {watchlistData?.length == 0 ? <p style={{ fontSize: '30px', display: 'flex', gap: '10px' }}>You Have Nothing To Watch Later! <img style={{ height: '50px', width: '50px' }} src="../../../src/assets/images/sad_emoji.png" alt="" /></p> :
+                <div className='watchlist-card-container'>
+                    {watchlistData?.map((item: WatchlistData, index: number) => (
+                        <div className='watchlist-card' key={index}>
+                            <div className='watchlist-item-poster'>
+                                {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
+                                {item?.poster_path
+                                    ? <NavLink to={`${timeFrame == 'movies' ? `/movie/detail/${item?.id}` : `/tv-show/detail/${item?.id}`}`}><img src={`${image_url_200}${item?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></NavLink>
+                                    : <NavLink to={`${timeFrame == 'movies' ? `/movie/detail/${item?.id}` : `/tv-show/detail/${item?.id}`}`}><img src={`${image_url_300}${item?.backdrop_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></NavLink>}
+                            </div>
+                            <div className='watchlist-item-details'>
+                                {item?.id && <h6>Id:- <span>{item?.id}</span></h6>}
+                                {(item?.original_title || item?.original_name) && (
+                                    <h5>Name:- <span>{item?.original_title || item?.original_name}</span></h5>
+                                )}
+                                {item?.overview && <p>Overview:- <span>{item?.overview}</span></p>}
+                                {(item?.release_date || item?.first_air_date) && (
+                                    <p>Release date:- <span>{item?.release_date || item?.first_air_date}</span></p>
+                                )}
+                                {item?.vote_count && <p>Total Rating:- <span>{item?.vote_count}</span></p>}
+                            </div>
                         </div>
-                        <div className='watchlist-item-details'>
-                            {item?.id && <h6>Id:- <span>{item?.id}</span></h6>}
-                            {(item?.original_title || item?.original_name) && (
-                                <h5>Name:- <span>{item?.original_title || item?.original_name}</span></h5>
-                            )}
-                            {item?.overview && <p>Overview:- <span>{item?.overview}</span></p>}
-                            {(item?.release_date || item?.first_air_date) && (
-                                <p>Release date:- <span>{item?.release_date || item?.first_air_date}</span></p>
-                            )}
-                            {item?.vote_count && <p>Total Rating:- <span>{item?.vote_count}</span></p>}
-                        </div>
-                    </div>
-                ))}
-            </div>}
+                    ))}
+                </div>}
         </section>
     )
 }

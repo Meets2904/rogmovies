@@ -13,12 +13,15 @@
     @include breakpoint1 {
         gap: 0px;
     }
+
     @include breakpoint2 {
         gap: 0px;
     }
+
     @include laptop_m {
         gap: 0px;
     }
+
     @include laptop_l {
         gap: 0px;
     }
@@ -34,6 +37,7 @@
             @include breakpoint1 {
                 font-size: 15px;
             }
+
             @include breakpoint2 {
                 font-size: 25px;
             }
@@ -58,23 +62,27 @@
                 column-gap: 10px;
                 align-items: center;
             }
+
             @include tablet_s {
                 margin-top: 15px;
                 grid-template-columns: auto auto;
                 row-gap: 20px;
                 column-gap: 10px;
             }
+
             @include breakpoint2 {
                 margin-top: 15px;
                 grid-template-columns: auto auto auto;
                 row-gap: 20px;
                 column-gap: 10px;
             }
+
             @include laptop_m {
                 margin-top: 25px;
                 row-gap: 20px;
                 column-gap: 10px;
             }
+
             @include laptop_l {
                 margin-top: 25px;
                 row-gap: 20px;
@@ -90,20 +98,24 @@
                 @include mobile {
                     max-width: 250px;
                 }
+
                 @include tablet_s {
                     max-width: 190px;
                 }
+
                 @include breakpoint2 {
                     max-width: 180px;
                 }
+
                 @include laptop_m {
                     max-width: 210px;
                 }
+
                 @include laptop_l {
                     max-width: 225px;
                 }
 
-                
+
 
                 .movie-card-poster {
                     width: 300px;
@@ -115,18 +127,22 @@
                         max-width: 250px;
                         height: 250px;
                     }
+
                     @include tablet_s {
                         max-width: 190px;
                         height: 250px;
                     }
+
                     @include breakpoint2 {
                         max-width: 180px;
                         height: 250px;
                     }
+
                     @include laptop_m {
                         max-width: 210px;
                         height: 250px;
                     }
+
                     @include laptop_l {
                         max-width: 225px;
                         height: 250px;
@@ -137,27 +153,32 @@
                         height: 350px;
                         border-radius: 15px;
                         border: 2px solid rgb(231, 79, 79);
+
                         @include mobile {
                             max-width: 250px;
                             height: 250px;
                         }
+
                         @include tablet_s {
                             max-width: 190px;
                             height: 250px;
                         }
+
                         @include breakpoint2 {
                             max-width: 180px;
                             height: 250px;
                         }
+
                         @include laptop_m {
                             max-width: 210px;
                             height: 250px;
                         }
+
                         @include laptop_l {
                             max-width: 225px;
                             height: 250px;
                         }
-                        
+
                     }
                 }
 
@@ -168,12 +189,15 @@
                     @include breakpoint1 {
                         font-size: 14px;
                     }
+
                     @include breakpoint2 {
                         font-size: 16px;
                     }
+
                     @include laptop_m {
                         font-size: 16px;
                     }
+
                     @include laptop_l {
                         font-size: 18px;
                     }
@@ -188,9 +212,11 @@
                         @include breakpoint1 {
                             font-size: 12px;
                         }
+
                         @include breakpoint2 {
                             font-size: 14px;
                         }
+
                         @include laptop_m {
                             font-size: 14px;
                         }
@@ -201,9 +227,11 @@
                             @include breakpoint1 {
                                 height: 12px;
                             }
+
                             @include breakpoint2 {
                                 height: 14px;
                             }
+
                             @include laptop_m {
                                 height: 14px;
                             }
@@ -213,9 +241,11 @@
                             @include breakpoint1 {
                                 font-size: 12px;
                             }
+
                             @include breakpoint2 {
                                 font-size: 14px;
                             }
+
                             @include laptop_m {
                                 font-size: 14px;
                             }

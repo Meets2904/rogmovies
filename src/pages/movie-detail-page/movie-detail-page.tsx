@@ -37,31 +37,32 @@ const MovieDetailPage = () => {
     const background_image_url = import.meta.env.VITE_BACKGROUND_IMAGE_URL;
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
 
+    // Function to fetch movie details
     const fetchMovieDetails = async () => {
-        if(params?.movieID){
+        if (params?.movieID) {
             try {
                 const response = await axiosInstance.get(`movie/${params?.movieID}?language=en-US&api_key=${api_key}`)
                 return response?.data
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
-        }else if (params?.tvshowID) {
+        } else if (params?.tvshowID) {
             try {
                 const response = await axiosInstance.get(`tv/${params?.tvshowID}?language=en-US&api_key=${api_key}`)
                 return response?.data
-              } catch (error) {
-                console.log(error)
-              }
+            } catch (error) {
+                console.error(error)
+            }
         }
     }
 
-    const { data: movieData, isLoading} = useQuery({
+    // React Query For movieDetails
+    const { data: movieData, isLoading } = useQuery({
         queryKey: ['movieDetails', params?.movieID, params?.tvshowID],
         queryFn: fetchMovieDetails,
     })
 
-    console.log(movieData)
-
+    // Image Loading Handler
     const handleImageLoad = () => {
         setImageLoading(false)
     }
@@ -85,7 +86,7 @@ const MovieDetailPage = () => {
                 <img src={`${background_image_url}${movieData?.backdrop_path}`} onLoad={handleBgImageLoad} onError={handleBgImageError} alt="" />
             </div>
             <div className='movie-detail-page-container container'>
-                {isLoading && <MovieTvDetailSkeleton/>}
+                {isLoading && <MovieTvDetailSkeleton />}
                 {<div className='movie-detail-card'>
                     <div className='movie-detail-card-poster'>
                         {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
@@ -97,7 +98,7 @@ const MovieDetailPage = () => {
                             <p key={index}>{genre?.name || 'NA'}</p>
                         ))}</div>
                         <p className='movie-overview-detail'>{movieData?.overview || 'NA'}</p>
-                        <AddWatchlistBtn movieID={params?.movieID} tvshowID={params?.tvshowID}/>
+                        <AddWatchlistBtn movieID={params?.movieID} tvshowID={params?.tvshowID} />
                     </div>
                 </div>}
 
@@ -110,7 +111,7 @@ const MovieDetailPage = () => {
                 </div>
 
                 <div className='movie-reviews'>
-                    <MovieReviews movieID={params?.movieID} tvshowID={params?.tvshowID}/>
+                    <MovieReviews movieID={params?.movieID} tvshowID={params?.tvshowID} />
                 </div>
 
                 <div className='movie-recommendations'>

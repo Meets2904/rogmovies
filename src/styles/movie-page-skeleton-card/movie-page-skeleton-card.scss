@@ -1,33 +1,32 @@
+.movie-page-skeleton-container {
 
-.movie-page-skeleton-container{
-    
-    .movie-page-skeleton{
+    .movie-page-skeleton {
         background-color: transparent;
         width: 300px;
         margin: 10px;
         display: flex;
         flex-direction: column;
         gap: 5px;
-        
-        .movie-page-skeleton-thumbnail{
+
+        .movie-page-skeleton-thumbnail {
             background-color: rgba(255, 255, 255, 0.356);
             height: 350px;
             width: 300px;
             border-radius: 15px;
         }
 
-        .movie-page-skeleton-text{
+        .movie-page-skeleton-text {
             background-color: rgba(255, 255, 255, 0.356);
             width: 300px;
             border-radius: 15px;
         }
 
-        .movie-page-date-skeleton{
+        .movie-page-date-skeleton {
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            .movie-page-skeleton-text{
+            .movie-page-skeleton-text {
                 width: 100px;
             }
         }

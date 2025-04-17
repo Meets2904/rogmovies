@@ -145,6 +145,7 @@
                 @include breakpoint1 {
                     gap: 5px;
                 }
+
                 @include breakpoint2 {
                     gap: 10px;
                 }
@@ -152,9 +153,11 @@
                 h6 {
                     font-size: 18px;
                     font-weight: 500;
+
                     @include breakpoint1 {
                         font-size: 14px;
                     }
+
                     @include breakpoint2 {
                         font-size: 14px;
                     }
@@ -167,9 +170,11 @@
                 h5 {
                     font-size: 18px;
                     font-weight: 500;
+
                     @include breakpoint1 {
                         font-size: 14px;
                     }
+
                     @include breakpoint2 {
                         font-size: 14px;
                     }
@@ -182,9 +187,11 @@
                 p {
                     font-size: 18px;
                     font-weight: 500;
+
                     @include breakpoint1 {
                         font-size: 14px;
                     }
+
                     @include breakpoint2 {
                         font-size: 14px;
                     }

@@ -14,46 +14,47 @@ type MovieReviewData = {
 }
 
 
-const MovieReviews = (props: ProtoType) => {
+const MovieReviews = ({ movieID, tvshowID }: ProtoType) => {
 
   const api_key = import.meta.env.VITE_API_KEY;
 
+  // Function to fetch movie reviews
   const fetchMovieReviews = async () => {
-    if (props?.movieID) {
+    if (movieID) {
       try {
-        const response = await axiosInstance.get(`movie/${props?.movieID}/reviews?language=en-US&page=1&api_key=${api_key}`)
+        const response = await axiosInstance.get(`movie/${movieID}/reviews?language=en-US&page=1&api_key=${api_key}`)
         return response?.data.results
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
-    } else if (props?.tvshowID) {
+    } else if (tvshowID) {
       try {
-        const response = await axiosInstance.get(`tv/${props?.tvshowID}/reviews?language=en-US&page=1&api_key=${api_key}`)
+        const response = await axiosInstance.get(`tv/${tvshowID}/reviews?language=en-US&page=1&api_key=${api_key}`)
         return response?.data.results
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   }
 
+  // React Query For Movie Review Data
   const { data: movieReviewsData } = useQuery({
-    queryKey: ['movieReviewsData', props?.movieID, props?.tvshowID],
+    queryKey: ['movieReviewsData', movieID, tvshowID],
     queryFn: fetchMovieReviews,
   })
 
 
-
+  // Function to formate the date
   const formatDate = (date: string) => {
     const options: any = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(date).toLocaleDateString(undefined, options);
   };
-  console.log("Reviews", movieReviewsData)
 
   if (!movieReviewsData || movieReviewsData?.length === 0) {
     return null;
   }
 
- 
+
   return (
     <section className='review-section container'>
       <div className='review-section-heading'><h5>Reviews</h5></div>

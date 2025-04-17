@@ -17,14 +17,14 @@ function App() {
         URL_Request_Token_Approved: URL_Request_Token_Approved,
       }
       try {
-          const response = await axiosInstance.post(`/authentication/session/new?api_key=${api_key}&request_token=${payload?.URL_Request_Token_Approved}`)
-          console.log("Session response", response?.data.session_id)
-          if(response?.data.session_id){
-            window.location.reload();
-            localStorage.setItem("sessionId", response?.data.session_id )
-          }else{
-            console.log("Failed to get session Id")
-          }
+        const response = await axiosInstance.post(`/authentication/session/new?api_key=${api_key}&request_token=${payload?.URL_Request_Token_Approved}`)
+        console.log("Session response", response?.data.session_id)
+        if (response?.data.session_id) {
+          window.location.reload();
+          localStorage.setItem("sessionId", response?.data.session_id)
+        } else {
+          console.log("Failed to get session Id")
+        }
       } catch (error) {
         console.log(error)
       }
@@ -32,7 +32,7 @@ function App() {
 
   }
 
-  const {  } = useQuery({
+  const { } = useQuery({
     queryKey: ['getSessionID'],
     queryFn: getSessionID,
   })

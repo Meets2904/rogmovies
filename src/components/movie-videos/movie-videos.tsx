@@ -24,9 +24,8 @@ type MovieVideosData = {
     key: string;
 }
 
-const MovieVideos = (props: PropType) => {
+const MovieVideos = ({ options, movieID, tvshowID }: PropType) => {
 
-    const { options } = props
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
     const [imageLoading, setImageLoading] = useState(true)
     const api_key = import.meta.env.VITE_API_KEY;
@@ -38,34 +37,32 @@ const MovieVideos = (props: PropType) => {
         onNextButtonClick
     } = usePrevNextButtons(emblaApi)
 
-
+    // Function to fetch movies videos data
     const fetchMovieVideos = async () => {
-        if (props?.movieID) {
+        if (movieID) {
             try {
-                const response = await axiosInstance.get(`movie/${props?.movieID}/videos?language=en-US&api_key=${api_key}`)
+                const response = await axiosInstance.get(`movie/${movieID}/videos?language=en-US&api_key=${api_key}`)
                 const data = (response?.data.results).slice(0, 6)
                 return data
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
-        } else if (props?.tvshowID) {
+        } else if (tvshowID) {
             try {
-                const response = await axiosInstance.get(`tv/${props?.tvshowID}/videos?language=en-US&api_key=${api_key}`)
+                const response = await axiosInstance.get(`tv/${tvshowID}/videos?language=en-US&api_key=${api_key}`)
                 const data = (response?.data.results).slice(0, 6)
                 return data
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         }
     }
 
-
+    // React Query For MoviesVideosData
     const { data: moviesVideosData, isLoading } = useQuery({
-        queryKey: ['movieVideosData', props?.movieID, props?.tvshowID],
+        queryKey: ['movieVideosData', movieID, tvshowID],
         queryFn: fetchMovieVideos,
     })
-
-    console.log("Videos", moviesVideosData)
 
     if (!moviesVideosData || moviesVideosData?.length === 0) {
         return null;
@@ -73,6 +70,7 @@ const MovieVideos = (props: PropType) => {
 
     const length = moviesVideosData?.length
 
+    // Image Loading handler
     const handleImageLoad = () => {
         setImageLoading(false)
     }

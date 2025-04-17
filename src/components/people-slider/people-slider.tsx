@@ -27,20 +27,21 @@ const PeopleSlider = ({ options, movieID, tvshowID }: PropType) => {
     const api_key = import.meta.env.VITE_API_KEY;
     const image_url_200 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_200
 
+    // Function to fetch people data
     const fetchPeopleData = async () => {
         if (movieID) {
             try {
                 const response = await axiosInstance.get(`movie/${movieID}/credits?language=en-US&api_key=${api_key}`)
                 return response?.data.cast
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         } else if (tvshowID) {
             try {
                 const response = await axiosInstance.get(`tv/${tvshowID}/credits?language=en-US&api_key=${api_key}`)
                 return response?.data.cast
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         } else {
             try {
@@ -54,12 +55,13 @@ const PeopleSlider = ({ options, movieID, tvshowID }: PropType) => {
         }
     }
 
-
+    // React Query for people slider data
     const { isLoading, isError, data: peopleData } = useQuery({
-        queryKey: ['TrendingPeopleSliderData', movieID, tvshowID],
+        queryKey: ['PeopleSliderData', movieID, tvshowID],
         queryFn: fetchPeopleData
     })
 
+    // Image Loading Handler
     const handleImageLoad = () => {
         setImageLoading(false)
     }

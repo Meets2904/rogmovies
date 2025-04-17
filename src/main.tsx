@@ -12,7 +12,7 @@ import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
 import WatchListPage from './pages/watchlist-page/watchlist-page.tsx';
 import MoviesPage from './pages/movies-page/movies-page.tsx';
 import MovieDetailPage from './pages/movie-detail-page/movie-detail-page.tsx';
-import { Analytics } from "@vercel/analytics/react" 
+import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
 
@@ -23,16 +23,16 @@ const session_id = localStorage.getItem('sessionId');
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App/>,
-    errorElement: <NotFoundPage/>,
+    element: <App />,
+    errorElement: <NotFoundPage />,
     children: [
       {
         path: '/',
-        element: <HomePage/>
+        element: <HomePage />
       },
       {
         path: '/profile',
-        element: <ProfilePage/>
+        element: <ProfilePage />
       },
       {
         path: '/approved',
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/watchlist-page',
-        element: session_id ? <WatchListPage /> : <Navigate replace to={'/'}/>,
+        element: session_id ? <WatchListPage /> : <Navigate replace to={'/'} />,
       },
       {
         path: '/movie/:category',
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/tv/:list',
-        element: <MoviesPage/>
+        element: <MoviesPage />
       },
       {
         path: '/movie/detail/:movieID',
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: session_id ? <Navigate replace to={'/'}/> : <LoginPage/>
+    element: session_id ? <Navigate replace to={'/'} /> : <LoginPage />
   }
 ])
 

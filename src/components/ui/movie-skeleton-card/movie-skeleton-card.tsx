@@ -5,8 +5,8 @@ type ProtoType = {
     length: number
 }
 
-const MovieSkeletonCard = (props: ProtoType) => {
-    return Array(props?.length).fill(0).map((_, index) => (
+const MovieSkeletonCard = ({ length }: ProtoType) => {
+    return Array(length).fill(0).map((_, index) => (
         <Stack className='movie-skeleton-container' key={index}>
             <div className='movie-skeleton'>
                 <Skeleton variant='rectangular' className='movie-skeleton-thumbnail' />

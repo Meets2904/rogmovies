@@ -6,9 +6,9 @@ const useOutsideClick = () => {
     const ref = useRef<HTMLDivElement>(null);
     const [isVisible, setVisible] = useState(false);
 
-    useEffect(()=> {
-        const handleClickOutside = (event:any) => {
-            if(ref.current && !ref.current.contains(event.target) && isVisible){
+    useEffect(() => {
+        const handleClickOutside = (event: any) => {
+            if (ref.current && !ref.current.contains(event.target) && isVisible) {
                 setVisible(false);
             }
         }
@@ -16,12 +16,12 @@ const useOutsideClick = () => {
 
         return () => {
             document.removeEventListener("click", handleClickOutside);
-          };
+        };
 
     }, [ref, isVisible, setVisible])
 
 
-  return [ref, isVisible, setVisible]
+    return [ref, isVisible, setVisible]
 }
 
 export default useOutsideClick;

@@ -29,6 +29,7 @@ const ProfilePage = () => {
   const session_id = localStorage.getItem("sessionId")
   const api_key = localStorage.getItem("api_key")
 
+  // Function to fetch user details
   const fetchUserDetails = async () => {
     try {
       const response = await axiosInstance.get(`account/null?api_key=${api_key}&session_id=${session_id}`)
@@ -40,19 +41,20 @@ const ProfilePage = () => {
       }
       return user;
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
+  // React Query For UserDetails
   const { data: user, isLoading } = useQuery({
     queryKey: ['userAccountDetails'],
     queryFn: fetchUserDetails,
   })
 
-  console.log(user)
   const userID: number = user?.userID as number
   localStorage.setItem('userID', String(userID));
 
+  // Image Loading Handler
   const handleImageLoad = () => {
     setImageLoading(false)
   }
@@ -60,7 +62,7 @@ const ProfilePage = () => {
   const handleImageError = () => {
     setImageLoading(false)
   }
-  
+
   return (
     <section className='profile-section-container container'>
       {isLoading && <ProfileSkeleton />}
@@ -72,7 +74,7 @@ const ProfilePage = () => {
         {!isLoading && <h6>Username:- <span>{user?.username}</span></h6>}
         {!isLoading && <h6>UserID:- <span>{user?.userID}</span></h6>}
         {!isLoading && <h6>Name:- <span>{user?.name}</span></h6>}
-        {!isLoading && <button className='log-out-btn' onClick={handleLogOut}>LogOut <Toaster/></button>}
+        {!isLoading && <button className='log-out-btn' onClick={handleLogOut}>LogOut <Toaster /></button>}
       </div>
     </section>
   )

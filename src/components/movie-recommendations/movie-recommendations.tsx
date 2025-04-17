@@ -26,9 +26,8 @@ type RecommendationData = {
     original_name: string;
 }
 
-const MovieRecommendations = (props: PropType) => {
+const MovieRecommendations = ({ options, movieID, tvshowID }: PropType) => {
 
-    const { options } = props
     const [emblaRef] = useEmblaCarousel(options)
     const [imageLoading, setImageLoading] = useState(true)
     const api_key = import.meta.env.VITE_API_KEY;
@@ -36,41 +35,41 @@ const MovieRecommendations = (props: PropType) => {
 
     // fetch recommendation handler for api calling
     const fetchRecommendationData = async () => {
-        if (props?.movieID) {
+        if (movieID) {
             try {
-                const response = await axiosInstance.get(`movie/${props?.movieID}/recommendations?language=en-US&page=1&api_key=${api_key}`)
+                const response = await axiosInstance.get(`movie/${movieID}/recommendations?language=en-US&page=1&api_key=${api_key}`)
                 return response?.data.results
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
-        } else if (props?.tvshowID) {
+        } else if (tvshowID) {
             try {
-                const response = await axiosInstance.get(`tv/${props?.tvshowID}/recommendations?language=en-US&page=1&api_key=${api_key}`)
+                const response = await axiosInstance.get(`tv/${tvshowID}/recommendations?language=en-US&page=1&api_key=${api_key}`)
                 return response?.data.results
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         }
     }
 
+    // React Query For Movie RecommendationData
     const { data, isLoading } = useQuery({
-        queryKey: ['movieRecommendationsData', props?.movieID, props?.tvshowID],
+        queryKey: ['movieRecommendationsData', movieID, tvshowID],
         queryFn: fetchRecommendationData,
     })
-
-    console.log("recommendation", data)
 
     if (!data || data?.length === 0) {
         return null;
     }
 
+    // Image Loading Handler
     const handleImageLoad = () => {
         setImageLoading(false)
-      }
-    
-      const handleImageError = () => {
+    }
+
+    const handleImageError = () => {
         setImageLoading(false)
-      }
+    }
 
     return (
         <section className='movie-recommendations-section'>
@@ -83,8 +82,8 @@ const MovieRecommendations = (props: PropType) => {
                             {movie?.poster_path && <div className='embla_slide_number recommendations-movie-card'>
                                 <div className='recommendations-movie-poster'>
                                     <NavLink to={`/movie/detail/${movie?.id}`}>
-                                     {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
-                                    <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" />
+                                        {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
+                                        <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" />
                                     </NavLink>
                                 </div>
                                 <h6>{movie?.original_title ? movie?.original_title : movie?.original_name}</h6>

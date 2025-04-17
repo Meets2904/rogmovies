@@ -9,6 +9,7 @@
     display: flex;
     justify-content: space-around;
     margin-top: 120px;
+
     @include breakpoint1 {
         flex-direction: column;
         margin-top: 50px;
@@ -73,7 +74,8 @@
                 }
 
             }
-            .login-btn{
+
+            .login-btn {
                 padding: 10px 45px;
                 border: none;
                 border-radius: 15px;
@@ -82,7 +84,7 @@
                 font-size: 16px;
             }
 
-            .login-btn:hover{
+            .login-btn:hover {
                 background-color: red;
                 color: $white;
             }
@@ -90,7 +92,7 @@
 
     }
 
-    .login-form-container:hover{
+    .login-form-container:hover {
         box-shadow: inset 0px 0px 5px 5px rgb(197, 96, 96);
     }
 
@@ -104,45 +106,45 @@
         gap: 15px;
         transition: 0.2s ease-in;
 
-        h1{
+        h1 {
             border-bottom: 1px solid grey;
             font-size: 25px;
             font-weight: 500;
         }
 
-        h6{
+        h6 {
             font-size: 18px;
             line-height: 20px;
             font-weight: 400;
         }
 
-        .detailed-instruction-container{
+        .detailed-instruction-container {
             display: flex;
             flex-direction: column;
             gap: 10px;
 
-            h6{
+            h6 {
                 color: rgb(207, 126, 126);
                 font-size: 18px;
                 font-weight: 400;
             }
 
-            .instruction-steps{
-                h5{
+            .instruction-steps {
+                h5 {
                     // color: rgb(175, 83, 83);
                     color: $white;
                     font-weight: 400;
                     font-size: 16px;
                 }
 
-                p{
+                p {
                     color: gray;
                 }
             }
         }
     }
 
-    .login-instruction-container:hover{
+    .login-instruction-container:hover {
         box-shadow: inset 0px 0px 5px 5px rgb(197, 96, 96);
     }
 }

@@ -26,20 +26,18 @@ type MovieTvData = {
 }
 
 
-const MoviesTVSlider = (props: PropType) => {
+const MoviesTVSlider = ({ options, path }: PropType) => {
 
-    const { options } = props
     const [emblaRef] = useEmblaCarousel(options)
     const [imageLoading, setImageLoading] = useState(true)
     const api_key = import.meta.env.VITE_API_KEY;
     const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300
 
 
-
+    // Function to fetch movies data
     const fetchMovies = async () => {
         try {
-            const response = await axiosInstance.get(`${props.path}?language=en-US&page=1&api_key=${api_key}`)
-            console.error(" MoviesTv Data", response?.data.results)
+            const response = await axiosInstance.get(`${path}?language=en-US&page=1&api_key=${api_key}`)
             const data = response?.data.results;
             return data;
         } catch (error) {
@@ -47,11 +45,13 @@ const MoviesTVSlider = (props: PropType) => {
         }
     }
 
+    // React Query for MoviesTvData
     const { isLoading, isError, data: moviesData } = useQuery({
-        queryKey: ['MoviesTvData', props.path],
+        queryKey: ['MoviesTvData', path],
         queryFn: fetchMovies,
     })
 
+    // Image Loading Handler
     const handleImageLoad = () => {
         setImageLoading(false)
     }
@@ -63,11 +63,11 @@ const MoviesTVSlider = (props: PropType) => {
     return (
         <section className='upcoming-movies-section container'>
             <div className='upcoming-movies-heading'>
-                {props.path === 'movie/upcoming' && <>
+                {path === 'movie/upcoming' && <>
                     <h3>Upcoming Movies</h3>
                     <NavLink to='movie/upcoming' className='see-all-link'><p>See All</p></NavLink>
                 </>}
-                {props.path === 'tv/top_rated' && <>
+                {path === 'tv/top_rated' && <>
                     <h3>Top Rated TV Series</h3>
                     <NavLink to='tv/top_rated' className='see-all-link'><p>See All</p></NavLink>
                 </>}
@@ -79,7 +79,7 @@ const MoviesTVSlider = (props: PropType) => {
                     {moviesData?.map((movie: MovieTvData, index: number) => (
                         <div className='embla_slide movie-card-container' key={index}>
                             <div className='embla_slide_number upcoming-movie-card'>
-                                <div className='upcoming-movie-poster'><NavLink to={`${props.path === 'movie/upcoming' && `/movie/detail/${movie?.id}` || props.path === 'tv/top_rated' && `tv-show/detail/${movie?.id}`}`}>
+                                <div className='upcoming-movie-poster'><NavLink to={`${path === 'movie/upcoming' && `/movie/detail/${movie?.id}` || path === 'tv/top_rated' && `tv-show/detail/${movie?.id}`}`}>
                                     {imageLoading && <div style={{ position: 'absolute', top: "45%", right: "40%" }}><CircularProgress /></div>}
                                     <img src={`${image_url_300}${movie?.poster_path}`} onLoad={handleImageLoad} onError={handleImageError} alt="" /></NavLink></div>
                                 <h6>{movie?.title || movie?.name || 'NA'}</h6>

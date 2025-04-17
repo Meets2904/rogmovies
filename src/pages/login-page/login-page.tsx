@@ -16,13 +16,11 @@ const LoginPage = () => {
     });
 
     const onSubmit = async (data: any) => {
-        console.log('Submitting data:', data);
 
         const payload = {
             api_key: data?.api_key,
         };
         localStorage.setItem("api_key", payload?.api_key)
-        console.log(payload?.api_key);
 
         try {
             const response = await axiosInstance.get(`authentication/token/new?api_key=${payload?.api_key}`)
@@ -36,9 +34,7 @@ const LoginPage = () => {
 
 
                 // Redirect to the authorization page with the correct redirect URL
-                // const redirectUrl = encodeURIComponent('http://localhost:5173/approved');
-                const redirectUrl = 'https://rogmovies.vercel.app/approved';
-                // window.location.href = `https://www.themoviedb.org/authenticate/${response?.data.request_token}?redirect_to=${redirectUrl}`;
+                const redirectUrl = encodeURIComponent('http://localhost:5173/approved');
                 window.location.href = `https://www.themoviedb.org/authenticate/${response?.data.request_token}?redirect_to=${redirectUrl}`;
 
             } else {
@@ -65,7 +61,7 @@ const LoginPage = () => {
                         <input type="text" {...register("api_key")} id='api_key' placeholder='Enter Api Key Here' />
                         {errors.api_key && <p>{errors.api_key.message}</p>}
                     </div>
-                    <button className='login-btn' type='submit'>Login<Toaster/></button>
+                    <button className='login-btn' type='submit'>Login<Toaster /></button>
                 </form>
             </div>
             <div className='login-instruction-container'>

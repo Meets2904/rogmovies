@@ -22,42 +22,42 @@ type TrendingMovieData = {
   vote_average: number;
 }
 
-const TrendingEmblaSlider = (props: PropType) => {
+const TrendingEmblaSlider = ({ options }: PropType) => {
 
-  const { options } = props
   const [emblaRef] = useEmblaCarousel(options)
   const [timeFrame, setTimeFrame] = useState('day');
   const [imageLoading, setImageLoading] = useState(true)
   const api_key = import.meta.env.VITE_API_KEY;
   const image_url_300 = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL_WIDTH_300;
 
+  // Function to fetch trending items
   const fetchTrendingItemsByDay = async () => {
     if (timeFrame == 'day') {
       try {
         const response = await axiosInstance.get(`trending/movie/day?language=en-US&page=1&api_key=${api_key}`)
-        console.log("Treding Items Data For Today", response?.data.results)
         const data = response?.data.results;
         return data;
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     } else if (timeFrame == 'week') {
       try {
         const response = await axiosInstance.get(`trending/movie/week?language=en-US&page=1&api_key=${api_key}`)
-        console.log("Treding Items Data For This Week", response?.data.results)
         const data = response?.data.results
         return data;
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   }
 
+  // React Query for fetch trending items
   const { isLoading, isError, data: trendingData } = useQuery({
     queryKey: ['trendingItemsData', timeFrame],
     queryFn: fetchTrendingItemsByDay,
   })
 
+  // Image Loading Function
   const handleImageLoad = () => {
     setImageLoading(false)
   }

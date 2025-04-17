@@ -32,11 +32,11 @@ const HomePage = () => {
 
     return (
         <>
-            <PosterEmblaCarousel slides={slides} options={options}/>
-            <TrendingEmblaSlider slides={trending_slides} options={trending_options}/>
-            <MoviesTVSlider slides={movies_tv_slider_slides} options={movies_tv_slider_options} path={'movie/upcoming'}/>
-            <PeopleSlider slides={trending_people_slides} options={trending_people_options}/>
-            <MoviesTVSlider slides={movies_tv_slider_slides} options={movies_tv_slider_options} path={'tv/top_rated'}/>
+            <PosterEmblaCarousel slides={slides} options={options} />
+            <TrendingEmblaSlider slides={trending_slides} options={trending_options} />
+            <MoviesTVSlider slides={movies_tv_slider_slides} options={movies_tv_slider_options} path={'movie/upcoming'} />
+            <PeopleSlider slides={trending_people_slides} options={trending_people_options} />
+            <MoviesTVSlider slides={movies_tv_slider_slides} options={movies_tv_slider_options} path={'tv/top_rated'} />
         </>
     )
 }
