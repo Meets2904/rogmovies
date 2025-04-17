@@ -107,7 +107,7 @@ const PosterEmblaCarousel: React.FC<PropType> = (props) => {
             .on('slideFocus', tweenScale)
     }, [emblaApi, tweenScale])
 
-    const images: string[] = ["../../../../src/assets/images/home-page-carousel/poster-1.jpg", "../../../../src/assets/images/home-page-carousel/poster-2.jpg", "../../../../src/assets/images/home-page-carousel/poster-3.jpg", "../../../../src/assets/images/home-page-carousel/poster-4.jpg", "../../../../src/assets/images/home-page-carousel/poster-5.jpg", "../../../../src/assets/images/home-page-carousel/poster-6.jpg"]
+    const images: string[] = ["/home-page-carousel/poster-1.jpg", "/home-page-carousel/poster-2.jpg", "/home-page-carousel/poster-3.jpg", "/home-page-carousel/poster-4.jpg", "/home-page-carousel/poster-5.jpg", "/home-page-carousel/poster-6.jpg"]
 
     const handleImageLoad = () => {
         setImageLoading(false)
